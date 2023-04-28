@@ -10,6 +10,72 @@
   </head>
   <body>
     <h1>The Hairadresser</h1>
-    <script src="script.js"></script>
+    
+        <header id="header">FRISØR FANCY</header>
+
+    <!-- Her skal vi indsætte nogle links de skal vel toggle hidden on and off... -->
+    <nav id="nav-bar">
+      <a href="">Forside</a>
+      <a href="">Booking</a>
+      <a href="">Friøsrer</a>
+      <a href="">Billeder</a>
+      <a href="">Kontakt</a>
+    </nav>
+
+
+<!-- 
+  
+  MAIN INDEHOLDER EN < SECTION > for hver af de sider som appen skal have
+  For at vælge mellem siderne skal vi tilføje en class = "hidden"
+  
+  I CSS er det noget alle det her:
+  .hidden {
+    display: none 
+  }
+-->
+
+<main>  
+    <button id="admin-selector">Change to customer</button>
+
+</section id="frontpage">
+</section>
+
+   <section id="booking">
+
+     <!-- her bliver bestilling vists hvis man er user -->
+     <div id="forms-tab"> 
+      <!-- selector der styre hvilken sub-selector der skal vises i forms -->
+    <select id="hairdresser-selected">
+      <option value="1" selected>Rastafair hår</option>
+      <option value="2">Momor Klip</option>
+      <option value="3">CBS style</option>
+      <option value="4">Papfars frisør</option>
+    </select>
+   <!-- resten af forms bliver indsat med dom manipulation her -->
+  <div id="forms-div"></div>
+  </div>
+  
+  <!-- her bliver ordre vists hvis man er admin -->
+  <div id="orders-overview"></div>
+
+</section id="shop-info">
+</section>
+
+</section id="photos">
+</section>
+
+</section id="contacts">
+</section>
+
+  
+</section>
+</main>  
+
+    <footer id="footer">Thomas, Kenneth & Lukas</footer>
+    
+    
+    
+    
+    <script src="booking.js"></script>
   </body>
 </html>
