@@ -1,7 +1,7 @@
-"use strict"
+"use strict";
 
-window.addEventListener("load", start)
+window.addEventListener("load", start);
 
-function start () {
-    console.log("Hi hairdresser");
+function start() {
+  console.log("Hi hairdresser");
 }
