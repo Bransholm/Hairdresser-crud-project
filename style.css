@@ -1,3 +1,11 @@
 .hidden {
   display: none;
 }
+
+.admin {
+  background-color: cadetblue;
+}
+
+.user {
+  background-color: chocolate;
+}

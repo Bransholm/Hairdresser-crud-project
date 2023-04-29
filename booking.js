@@ -22,6 +22,7 @@ function start() {
     .querySelector("#admin-selector")
     .addEventListener("click", changeAdminStatus);
 
+  //Styre input for "filter-baren"
   document
     .querySelector("#filters-bar")
     .addEventListener("keyup", filteredSearchInput);
@@ -45,21 +46,31 @@ async function updateData() {
 
 // Changes the admin status (when you click the button)
 function changeAdminStatus() {
+  //Skifter til kunde-mode
   if (statusIsAdimin == true) {
     statusIsAdimin = false;
     document.querySelector("#admin-selector").textContent = "Change to admin";
+    //Skifter bagrundsfarve til kunde-mode.
     document.querySelector("main").classList.add("user");
     document.querySelector("main").classList.remove("admin");
-    document.querySelector("#orders-overview").classList.add("hidden");
+    //Viser bestilling forms til kunden
     document.querySelector("#forms-tab").classList.remove("hidden");
+    // Skjuler order-list og filter-baren for kunden
+    document.querySelector("#orders-overview").classList.add("hidden");
+    document.querySelector("#filters-bar").classList.add("hidden");
   } else {
+    // Skifter til admin-mode;
     statusIsAdimin = true;
     document.querySelector("#admin-selector").textContent =
       "Change to customer";
+    //Skifter til admin-farve-mode.
     document.querySelector("main").classList.add("admin");
     document.querySelector("main").classList.remove("user");
-    document.querySelector("#orders-overview").classList.remove("hidden");
+    //Skjuler forms for admin
     document.querySelector("#forms-tab").classList.add("hidden");
+    // Viser admin orders og filter-baren
+    document.querySelector("#orders-overview").classList.remove("hidden");
+    document.querySelector("#filters-bar").classList.remove("hidden");
   }
   updateData();
 }
@@ -107,12 +118,14 @@ function restructureData(ordersObject) {
   return ordersList;
 }
 
+//Looper på listen af orders.
 function orderDOM(ordersList) {
   for (const orderElement of ordersList) {
     visualizeOrderElement(orderElement);
   }
 }
 
+//Skaber DOM mapiuplation for hvert oder-element i listen.
 function visualizeOrderElement(order) {
   console.log("showOrder");
   //Const med lokationen for orders-overview
@@ -135,6 +148,8 @@ function visualizeOrderElement(order) {
   orderView.insertAdjacentHTML("beforeend", orderHTML);
 }
 
+// Setter DOM manipulation for bestillings-forms.
+// // Variere efter hvilken frisør der er valgt (haridresserSelector)
 function setDOM() {
   let htmlDOM;
   document.querySelector("#forms-div").innerHTML = "";
