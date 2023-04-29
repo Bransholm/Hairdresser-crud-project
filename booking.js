@@ -21,6 +21,13 @@ function start() {
   document
     .querySelector("#admin-selector")
     .addEventListener("click", changeAdminStatus);
+
+  document
+    .querySelector("#filters-bar")
+    .addEventListener("keyup", filteredSearchInput);
+  document
+    .querySelector("#filters-bar")
+    .addEventListener("search", filteredSearchInput);
 }
 
 let hairdresserSelector = 0;
@@ -218,4 +225,26 @@ async function createOrder(event) {
   const data = await response.json();
   // Husk at opdatere så vi kan se der sker noget!
   updateData();
+}
+
+// -------- FILTERS FUNKTIONEN -------------
+
+function filteredSearchInput(event) {
+  const value = event.target.value;
+  console.log(value);
+  const filteredOrders = filteredSearch(value);
+  //Kald funktionen som viser elementer...
+  console.log(filteredOrders);
+}
+
+function filteredSearch(searchValue) {
+  searchValue = searchValue.toLowerCase();
+  //hvorkommer order/posts fra?
+  const results = order.filter(checkTitle);
+
+  function checkTitle(order) {
+    const behandling = order.behandling.toLowerCase();
+    return behandling.ncludes(searchValue);
+  }
+  return results;
 }
