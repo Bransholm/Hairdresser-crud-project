@@ -3,7 +3,7 @@
 const endpoint =
   "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
 // Hører til filter appen. Ikke sikker på hvad meningen er med den
-let order;
+let orders;
 
 // I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
 // let posts;
@@ -41,8 +41,8 @@ let statusIsAdimin = true;
 // sort and filter funtions....
 
 async function updateData() {
-  const jsonFiles = await fetchOrders();
-  const listOfOrders = restructureData(jsonFiles);
+  orders = await fetchOrders();
+  const listOfOrders = restructureData(orders);
   orderDOM(listOfOrders);
 }
 
@@ -98,7 +98,7 @@ function changeOfMode(selected) {
   console.log(hairdresserSelector);
 }
 
-//Fetches the json on load
+//Fetches the json on loadS
 async function fetchOrders() {
   const promise = await fetch(`${endpoint}/orders.json`);
   const response = await promise.json();
