@@ -259,10 +259,10 @@ function filteredSearchInput(event) {
 function filteredSearch(searchValue) {
   searchValue = searchValue.toLowerCase();
   //hvorkommer order/posts fra?
-  const results = order.filter(checkTitle);
+  const results = orders.filter(checkTitle);
 
-  function checkTitle(order) {
-    const behandling = order.behandling.toLowerCase();
+  function checkTitle(orders) {
+    const behandling = orders.behandling.toLowerCase();
     return behandling.includes(searchValue);
   }
   return results;
