@@ -2,6 +2,8 @@
 
 const endpoint =
   "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
+// Hører til filter appen. Ikke sikker på hvad meningen er med den
+let order;
 
 // I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
 // let posts;
@@ -242,6 +244,8 @@ async function createOrder(event) {
   updateData();
 }
 
+//-----------DELETE RELATERET-----------------
+
 // -------- FILTERS FUNKTIONEN -------------
 
 function filteredSearchInput(event) {
@@ -259,7 +263,7 @@ function filteredSearch(searchValue) {
 
   function checkTitle(order) {
     const behandling = order.behandling.toLowerCase();
-    return behandling.ncludes(searchValue);
+    return behandling.includes(searchValue);
   }
   return results;
 }
