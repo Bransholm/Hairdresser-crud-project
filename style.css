@@ -1,3 +1,54 @@
+html, body {
+  font-size: 25px;
+  color: #9c896f;
+  background-color: #383b40;
+  margin: 10px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 60px 400px 60px;
+  grid-gap: 10px;
+}
+
+.header {
+  grid-column: 1/-1;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #d4bd9d;
+  border-style: solid;
+  border-color: purple;
+}
+
+.nav-bar {
+  background-color: #d4bd9d;
+  border-style: solid;
+  border-color: purple;
+}
+
+.content-window {
+  grid-column: 2/-1;
+  background-color: #d4bd9d;
+  border-style: solid;
+  border-color: purple;
+}
+
+.footer {
+  grid-column: 1/-1;
+  background-color: #d4bd9d;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-style: solid;
+  border-color: purple;
+}
+
+
+
 .hidden {
   display: none;
 }
+
+
+/* Farver #9c896f mørkebrun, #d4bd9d lysebrun, #383b40 mørkegrå */
