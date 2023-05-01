@@ -31,11 +31,6 @@ function start() {
   document
     .querySelector("#filters-bar")
     .addEventListener("search", filteredSearchInput);
-
-  function deleteOrderHandler(orderId) {
-    deleteOrder(orderId);
-    updateData();
-  }
 }
 
 let hairdresserSelector = 0;
@@ -280,6 +275,63 @@ async function createOrder(event) {
 function deleteOrder(orderId) {
   const orderRef = firebase.database().ref(`orders/${orderId}`);
   orderRef.remove();
+}
+
+function showDialogDeleteOrder(orderId) {
+  const order = getOrderById(orderId);
+
+  // Create dialog element
+  const dialogDeleteOrder = document.createElement("dialog");
+  dialogDeleteOrder.id = "dialog-delete-order";
+
+  // Create dialog content
+  const dialogTitle = document.createElement("h2");
+  dialogTitle.textContent = "Vil du gerne slette din ordrer";
+  dialogDeleteOrder.appendChild(dialogTitle);
+
+  const dialogContent = document.createElement("p");
+  dialogContent.id = "dialog-delete-order-form";
+  dialogContent.textContent = "form of order";
+  dialogDeleteOrder.appendChild(dialogContent);
+
+  const formDeleteOrder = document.createElement("form");
+  formDeleteOrder.id = "form-delete-order";
+  formDeleteOrder.method = "dialog";
+  dialogDeleteOrder.appendChild(formDeleteOrder);
+
+  const btnCancel = document.createElement("button");
+  btnCancel.type = "button";
+  btnCancel.id = "btn-cancel";
+  btnCancel.textContent = "Nej";
+  formDeleteOrder.appendChild(btnCancel);
+
+  const btnSubmit = document.createElement("button");
+  btnSubmit.type = "submit";
+  btnSubmit.textContent = "Ja";
+  formDeleteOrder.appendChild(btnSubmit);
+
+  // Add dialog element to the DOM
+  document.body.appendChild(dialogDeleteOrder);
+
+  // Show dialog
+  dialogDeleteOrder.showModal();
+
+  // Add event listener to form submit
+  formDeleteOrder.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    deleteOrder(orderId); // Call deleteOrder function
+    dialogDeleteOrder.close(); // Close dialog
+  });
+
+  // Add event listener to cancel button
+  btnCancel.addEventListener("click", function () {
+    dialogDeleteOrder.close(); // Close dialog
+  });
+  const deleteButton = orderView.lastElementChild.querySelector(".btn-delete");
+
+  deleteButton.addEventListener("click", function () {
+    showDialogDeleteOrder(order.id);
+  });
 }
 
 // -------- FILTERS FUNKTIONEN -------------
