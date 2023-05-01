@@ -4,87 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
     <title>The Hairadresser</title>
   </head>
   <body>
-    <h1>The Hairadresser</h1>
+    <div class="grid-container">
+      <header id="header" class="header">FRISØR FANCY</header>
 
-        <header id="header">FRISØR FANCY</header>
+      <!-- Her skal vi indsætte nogle links de skal vel toggle hidden on and off... -->
+      <nav id="nav-bar" class="nav-bar">
+        <a href="">Forside</a><br />
+        <a href="">Booking</a><br />
+        <a href="">Friøsrer</a><br />
+        <a href="">Billeder</a><br />
+        <a href="">Kontakt</a><br />
+      </nav>
 
-    <!-- Her skal vi indsætte nogle links de skal vel toggle hidden on and off... -->
-    <nav id="nav-bar">
-      <a href="">Forside</a>
-      <a href="">Booking</a>
-      <a href="">Friøsrer</a>
-      <a href="">Billeder</a>
-      <a href="">Kontakt</a>
-    </nav>
+      <main class="content-window">
+        <button id="admin-selector">Change to customer</button>
 
+        <section id="frontpage"></section>
 
-<!-- 
-  
-  MAIN INDEHOLDER EN < SECTION > for hver af de sider som appen skal have
-  For at vælge mellem siderne skal vi tilføje en class = "hidden"
-  
-  I CSS er det noget alle det her:
-  .hidden {
-    display: none 
-  }
--->
+        <section id="booking">
+          <!-- her bliver bestilling vists hvis man er user -->
+          <div id="forms-tab">
+            <!-- selector der styre hvilken sub-selector der skal vises i forms -->
+            <select id="hairdresser-selected">
+              <option value="1" selected>Rastafair hår</option>
+              <option value="2">Momor Klip</option>
+              <option value="3">CBS style</option>
+              <option value="4">Papfars frisør</option>
+            </select>
+            <!-- resten af forms bliver indsat med dom manipulation her -->
+            <div id="forms-div"></div>
+          </div>
 
-<main>  
-    <button id="admin-selector">Change to customer</button>
+          <!-- her bliver ordre vists hvis man er admin -->
+          <div id="orders-filter">
+            <input type="text" id="filters-bar" />
+          </div>
+          <div id="orders-overview"></div>
+        </section>
+        <section id="shop-info"></section>
 
-</section id="frontpage">
-</section>
+        <section id="photos"></section>
 
-   <section id="booking">
+        <section id="contacts"></section>
+      </main>
 
-     <!-- her bliver bestilling vists hvis man er user -->
-     <div id="forms-tab"> 
-      <!-- selector der styre hvilken sub-selector der skal vises i forms -->
-    <select id="hairdresser-selected">
-      <option value="1" selected>Rastafair hår</option>
-      <option value="2">Momor Klip</option>
-      <option value="3">CBS style</option>
-      <option value="4">Papfars frisør</option>
-    </select>
-   <!-- resten af forms bliver indsat med dom manipulation her -->
-  <div id="forms-div"></div>
-  </div>
-  
-  <!-- her bliver ordre vists hvis man er admin -->
-  <div id="orders-filter">
-  <input type = "text" id="filters-bar">
-  </div>
-  <div id="orders-overview"></div>
-
-</section id="shop-info">
-</section>
-
-</section id="photos">
-</section>
-
-</section id="contacts">
-</section>
-
-  
-</section>
-</main>  
-
-    <footer id="footer">Thomas, Kenneth & Lukas</footer>
-    
-    
-    
-    
+      <footer id="footer" class="footer">Thomas, Kenneth & Lukas</footer>
+    </div>
     <script src="script.js"></script>
     <script src="forside.js"></script>
     <script src="frisore.js"></script>
     <script src="booking.js"></script>
     <script src="billeder.js"></script>
     <script src="kontakt.js"></script>
-    
   </body>
 </html>

@@ -137,7 +137,7 @@ function visualizeOrderElement(order) {
   const orderHTML =
     /*html*/
     `
-<div class="oder-item">
+<div class="order-item">
 <p>Den valgte frisør: ${order.frisør}</p>
 <p>Den valgte behandling: ${order.behandling}</p>
 <p>Dato: ${order.dato} Kl: ${order.tid}</p>
