@@ -31,6 +31,11 @@ function start() {
   document
     .querySelector("#filters-bar")
     .addEventListener("search", filteredSearchInput);
+
+  function deleteOrderHandler(orderId) {
+    deleteOrder(orderId);
+    updateData();
+  }
 }
 
 let hairdresserSelector = 0;
@@ -137,17 +142,44 @@ function visualizeOrderElement(order) {
   const orderHTML =
     /*html*/
     `
-<div class="order-item">
-<p>Den valgte frisør: ${order.frisør}</p>
-<p>Den valgte behandling: ${order.behandling}</p>
-<p>Dato: ${order.dato} Kl: ${order.tid}</p>
-<p>Navnet på kunden: ${order.navn}</p>
-<p>Kundes nummer: ${order.telefonNummer}</p>
-<p>Kundes email: ${order.email}</p>
-</div>
+    
+  <div class="order-item">
+    <p>Den valgte frisør: ${order.frisør}</p>
+    <p>Den valgte behandling: ${order.behandling}</p>
+    <p>Dato: ${order.dato} Kl: ${order.tid}</p>
+    <p>Navnet på kunden: ${order.navn}</p>
+    <p>Kundes nummer: ${order.telefonNummer}</p>
+    <p>Kundes email: ${order.email}</p>
+    <div class ="btns">
+      <button class="btn-delete">Slet booking</button>
+      <button class="btn-update">Updater booking</button>
+    </div>
+  </div>
 `;
   //Insætter elementet...
   orderView.insertAdjacentHTML("beforeend", orderHTML);
+  // Event listerner til Slet booking knap /DELETE/
+  const deleteButton = orderView.lastElementChild.querySelector(".btn-delete");
+
+  deleteButton.addEventListener("click", function () {
+    deleteOrderHandler(order.id);
+  });
+
+  // I CRUD opgaven blev deleteClicked sat in i denne function, sådan den kunne håndtere hvad der skete når man ville
+  // en post. Med samme metode kan vi lave en "deleteOrder" give muligheden for at slette sin booking.
+
+  const orderElement = document.createElement("div");
+  // ... code to create order element
+
+  // Add a delete button to the order element
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.addEventListener("click", () => {
+    deleteOrder(order.id);
+  });
+  orderElement.appendChild(deleteBtn);
+
+  return orderElement;
 }
 
 // Setter DOM manipulation for bestillings-forms.
@@ -245,6 +277,10 @@ async function createOrder(event) {
 }
 
 //-----------DELETE RELATERET-----------------
+function deleteOrder(orderId) {
+  const orderRef = firebase.database().ref(`orders/${orderId}`);
+  orderRef.remove();
+}
 
 // -------- FILTERS FUNKTIONEN -------------
 
