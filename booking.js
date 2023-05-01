@@ -272,67 +272,46 @@ async function createOrder(event) {
 }
 
 //-----------DELETE RELATERET-----------------
-function deleteOrder(orderId) {
-  const orderRef = firebase.database().ref(`orders/${orderId}`);
-  orderRef.remove();
-}
+const deleteOrderHandler = async (orderId) => {
+  // Find the order in the database using the orderId
+  const order = await fetch(`/orders/${orderId}`).then((res) => res.json());
 
-function showDialogDeleteOrder(orderId) {
-  const order = getOrderById(orderId);
+  // Update the dialog text with the order details
+  const dialogForm = document.getElementById("dialog-delete-order-form");
+  dialogForm.textContent = `Do you want to delete order #${orderId} - ${order.title}?`;
 
-  // Create dialog element
-  const dialogDeleteOrder = document.createElement("dialog");
-  dialogDeleteOrder.id = "dialog-delete-order";
+  // Show the dialog
+  const dialog = document.getElementById("dialog-delete-order");
+  dialog.showModal();
 
-  // Create dialog content
-  const dialogTitle = document.createElement("h2");
-  dialogTitle.textContent = "Vil du gerne slette din ordrer";
-  dialogDeleteOrder.appendChild(dialogTitle);
+  // Handle the form submission
+  const form = document.getElementById("form-delete-order");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const dialogContent = document.createElement("p");
-  dialogContent.id = "dialog-delete-order-form";
-  dialogContent.textContent = "form of order";
-  dialogDeleteOrder.appendChild(dialogContent);
+    // Delete the order from the database
+    await fetch(`/orders/${orderId}`, { method: "DELETE" });
 
-  const formDeleteOrder = document.createElement("form");
-  formDeleteOrder.id = "form-delete-order";
-  formDeleteOrder.method = "dialog";
-  dialogDeleteOrder.appendChild(formDeleteOrder);
+    // Hide the dialog
+    dialog.close();
 
-  const btnCancel = document.createElement("button");
-  btnCancel.type = "button";
-  btnCancel.id = "btn-cancel";
-  btnCancel.textContent = "Nej";
-  formDeleteOrder.appendChild(btnCancel);
-
-  const btnSubmit = document.createElement("button");
-  btnSubmit.type = "submit";
-  btnSubmit.textContent = "Ja";
-  formDeleteOrder.appendChild(btnSubmit);
-
-  // Add dialog element to the DOM
-  document.body.appendChild(dialogDeleteOrder);
-
-  // Show dialog
-  dialogDeleteOrder.showModal();
-
-  // Add event listener to form submit
-  formDeleteOrder.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent default form submission behavior
-    deleteOrder(orderId); // Call deleteOrder function
-    dialogDeleteOrder.close(); // Close dialog
+    // Reload the page to update the order list
+    location.reload();
   });
 
-  // Add event listener to cancel button
-  btnCancel.addEventListener("click", function () {
-    dialogDeleteOrder.close(); // Close dialog
+  // Handle the cancel button
+  const cancelButton = document.getElementById("btn-cancel");
+  cancelButton.addEventListener("click", () => {
+    // Hide the dialog
+    dialog.close();
   });
-  const deleteButton = orderView.lastElementChild.querySelector(".btn-delete");
+};
 
-  deleteButton.addEventListener("click", function () {
-    showDialogDeleteOrder(order.id);
-  });
-}
+// Add the event listener to the delete button
+const deleteButton = orderView.lastElementChild.querySelector(".btn-delete");
+deleteButton.addEventListener("click", () => {
+  deleteOrderHandler(order.id);
+});
 
 // -------- FILTERS FUNKTIONEN -------------
 
