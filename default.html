@@ -13,19 +13,19 @@
 
       <!-- Her skal vi indsætte nogle links de skal vel toggle hidden on and off... -->
       <nav id="nav-bar" class="nav-bar">
-        <a href="">Forside</a><br />
-        <a href="">Booking</a><br />
-        <a href="">Friøsrer</a><br />
-        <a href="">Billeder</a><br />
-        <a href="">Kontakt</a><br />
+        <button id="frontpageBtn">Forside</button><br />
+        <button id="bookingBtn">Booking</button><br />
+        <button id="infoBtn">Friøsrer</button><br />
+        <button id="photoBtn">Billeder</button><br />
+        <button id="contactBtn">Kontakt</button><br />
       </nav>
 
       <main class="content-window">
         <button id="admin-selector">Change to customer</button>
 
-        <section id="frontpage"></section>
+        <section id="frontpage">Forside</section>
 
-        <section id="booking">
+        <section id="booking">Bestil tid
           <!-- her bliver bestilling vists hvis man er user -->
           <div id="forms-tab">
             <!-- selector der styre hvilken sub-selector der skal vises i forms -->
@@ -45,11 +45,11 @@
           </div>
           <div id="orders-overview"></div>
         </section>
-        <section id="shop-info"></section>
+        <section id="shop-info">shop-info</section>
 
-        <section id="photos"></section>
+        <section id="photos">Fotos</section>
 
-        <section id="contacts"></section>
+        <section id="contacts">Kontakt</section>
       </main>
 
     <dialog id="dialog-delete-order">
