@@ -195,7 +195,7 @@ function setDOM() {
     `<form id="order-form">
     <legend>Bestilling</legend>
    <div>${htmlDOM}</div>
-   <lable for="oderDate">Dato</lable>
+   <lable for="orderDate">Dato</lable>
    <input type="date" id="orderDate" name="orderDate">
    <lable for="orderTime">Tid</lable>
    <input type="time" id="orderTime" name="orderTime">
