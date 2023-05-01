@@ -2,6 +2,8 @@
 
 const endpoint =
   "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
+// Hører til filter appen. Ikke sikker på hvad meningen er med den
+let orders;
 
 // I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
 // let posts;
@@ -21,6 +23,14 @@ function start() {
   document
     .querySelector("#admin-selector")
     .addEventListener("click", changeAdminStatus);
+
+  //Styre input for "filter-baren"
+  document
+    .querySelector("#filters-bar")
+    .addEventListener("keyup", filteredSearchInput);
+  document
+    .querySelector("#filters-bar")
+    .addEventListener("search", filteredSearchInput);
 }
 
 let hairdresserSelector = 0;
@@ -31,28 +41,38 @@ let statusIsAdimin = true;
 // sort and filter funtions....
 
 async function updateData() {
-  const jsonFiles = await fetchOrders();
-  const listOfOrders = restructureData(jsonFiles);
+  orders = await fetchOrders();
+  const listOfOrders = restructureData(orders);
   orderDOM(listOfOrders);
 }
 
 // Changes the admin status (when you click the button)
 function changeAdminStatus() {
+  //Skifter til kunde-mode
   if (statusIsAdimin == true) {
     statusIsAdimin = false;
     document.querySelector("#admin-selector").textContent = "Change to admin";
+    //Skifter bagrundsfarve til kunde-mode.
     document.querySelector("main").classList.add("user");
     document.querySelector("main").classList.remove("admin");
-    document.querySelector("#orders-overview").classList.add("hidden");
+    //Viser bestilling forms til kunden
     document.querySelector("#forms-tab").classList.remove("hidden");
+    // Skjuler order-list og filter-baren for kunden
+    document.querySelector("#orders-overview").classList.add("hidden");
+    document.querySelector("#filters-bar").classList.add("hidden");
   } else {
+    // Skifter til admin-mode;
     statusIsAdimin = true;
     document.querySelector("#admin-selector").textContent =
       "Change to customer";
+    //Skifter til admin-farve-mode.
     document.querySelector("main").classList.add("admin");
     document.querySelector("main").classList.remove("user");
-    document.querySelector("#orders-overview").classList.remove("hidden");
+    //Skjuler forms for admin
     document.querySelector("#forms-tab").classList.add("hidden");
+    // Viser admin orders og filter-baren
+    document.querySelector("#orders-overview").classList.remove("hidden");
+    document.querySelector("#filters-bar").classList.remove("hidden");
   }
   updateData();
 }
@@ -78,7 +98,7 @@ function changeOfMode(selected) {
   console.log(hairdresserSelector);
 }
 
-//Fetches the json on load
+//Fetches the json on loadS
 async function fetchOrders() {
   const promise = await fetch(`${endpoint}/orders.json`);
   const response = await promise.json();
@@ -100,12 +120,14 @@ function restructureData(ordersObject) {
   return ordersList;
 }
 
+//Looper på listen af orders.
 function orderDOM(ordersList) {
   for (const orderElement of ordersList) {
     visualizeOrderElement(orderElement);
   }
 }
 
+//Skaber DOM mapiuplation for hvert oder-element i listen.
 function visualizeOrderElement(order) {
   console.log("showOrder");
   //Const med lokationen for orders-overview
@@ -128,6 +150,8 @@ function visualizeOrderElement(order) {
   orderView.insertAdjacentHTML("beforeend", orderHTML);
 }
 
+// Setter DOM manipulation for bestillings-forms.
+// // Variere efter hvilken frisør der er valgt (haridresserSelector)
 function setDOM() {
   let htmlDOM;
   document.querySelector("#forms-div").innerHTML = "";
@@ -218,4 +242,28 @@ async function createOrder(event) {
   const data = await response.json();
   // Husk at opdatere så vi kan se der sker noget!
   updateData();
+}
+
+//-----------DELETE RELATERET-----------------
+
+// -------- FILTERS FUNKTIONEN -------------
+
+function filteredSearchInput(event) {
+  const value = event.target.value;
+  console.log(value);
+  const filteredOrders = filteredSearch(value);
+  //Kald funktionen som viser elementer...
+  console.log(filteredOrders);
+}
+
+function filteredSearch(searchValue) {
+  searchValue = searchValue.toLowerCase();
+  //hvorkommer order/posts fra?
+  const results = orders.filter(checkTitle);
+
+  function checkTitle(orders) {
+    const behandling = orders.behandling.toLowerCase();
+    return behandling.includes(searchValue);
+  }
+  return results;
 }

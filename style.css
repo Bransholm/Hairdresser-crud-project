@@ -52,3 +52,10 @@ html, body {
 
 
 /* Farver #9c896f mørkebrun, #d4bd9d lysebrun, #383b40 mørkegrå */
+.admin {
+  background-color: cadetblue;
+}
+
+.user {
+  background-color: chocolate;
+}
