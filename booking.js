@@ -1,6 +1,6 @@
 "use strict";
 
-const endpoint1 =
+const endpoint =
   "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
 // Hører til filter appen. Ikke sikker på hvad meningen er med den
 let orders;
