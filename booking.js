@@ -154,11 +154,6 @@ function visualizeOrderElement(order) {
   //Insætter elementet...
   orderView.insertAdjacentHTML("beforeend", orderHTML);
   // Event listerner til Slet booking knap /DELETE/
-  const deleteButton = orderView.lastElementChild.querySelector(".btn-delete");
-
-  deleteButton.addEventListener("click", function () {
-    deleteOrderHandler(order.id);
-  });
 
   // I CRUD opgaven blev deleteClicked sat in i denne function, sådan den kunne håndtere hvad der skete når man ville
   // en post. Med samme metode kan vi lave en "deleteOrder" give muligheden for at slette sin booking.
@@ -272,46 +267,6 @@ async function createOrder(event) {
 }
 
 //-----------DELETE RELATERET-----------------
-const deleteOrderHandler = async (orderId) => {
-  // Find the order in the database using the orderId
-  const order = await fetch(`/orders/${orderId}`).then((res) => res.json());
-
-  // Update the dialog text with the order details
-  const dialogForm = document.getElementById("dialog-delete-order-form");
-  dialogForm.textContent = `Do you want to delete order #${orderId} - ${order.title}?`;
-
-  // Show the dialog
-  const dialog = document.getElementById("dialog-delete-order");
-  dialog.showModal();
-
-  // Handle the form submission
-  const form = document.getElementById("form-delete-order");
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    // Delete the order from the database
-    await fetch(`/orders/${orderId}`, { method: "DELETE" });
-
-    // Hide the dialog
-    dialog.close();
-
-    // Reload the page to update the order list
-    location.reload();
-  });
-
-  // Handle the cancel button
-  const cancelButton = document.getElementById("btn-cancel");
-  cancelButton.addEventListener("click", () => {
-    // Hide the dialog
-    dialog.close();
-  });
-};
-
-// Add the event listener to the delete button
-const deleteButton = orderView.lastElementChild.querySelector(".btn-delete");
-deleteButton.addEventListener("click", () => {
-  deleteOrderHandler(order.id);
-});
 
 // -------- FILTERS FUNKTIONEN -------------
 
