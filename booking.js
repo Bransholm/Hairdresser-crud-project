@@ -84,7 +84,7 @@ function changeAdminStatus() {
     document.querySelector("#orders-overview").classList.remove("hidden");
     document.querySelector("#filters-bar").classList.remove("hidden");
   }
-  // updateData();
+  //// updateData();
 }
 
 //Swaps between the selected hairdressers (Activated by a change)
@@ -309,6 +309,24 @@ function handleDeletePostButtons() {
 
 function closeWindow() {
   document.querySelector("#dialog-delete-order").close();
+}
+//-----------UPDATE RELATERET-----------------
+
+async function updateOrder(id, title, body, image) {
+  const orderToUpdate = {
+    title,
+    body,
+    image,
+  };
+  const json = JSON.stringify(orderToUpdate);
+  const response = await fetch(`${endpoint}/orders/${id}.json`, {
+    method: "PUT",
+    body: json,
+  });
+  if (response.ok) {
+    console.log("En ordre er blevet opdateret");
+    updateData();
+  }
 }
 
 // -------- FILTERS FUNKTIONEN -------------
