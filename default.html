@@ -51,6 +51,7 @@
         <section id="contacts">Kontakt</section>
       </main>
 
+    <!--Dialog delete order, som kommer frem når man trykker på "Slet booking"-->
     <dialog id="dialog-delete-order">
       <h2>Vil du gerne slette din ordrer</h2>
       <p id="dialog-delete-order-form">form of order</p>
@@ -59,6 +60,36 @@
         <button type="submit"">Ja</button>
       </form>
     </dialog>
+
+    <!--Dialog Update order, som kommer frem når man trykker på "Updater booking"-->
+    <dialog id="dialog-update-post">
+      <h2>Update post</h2>
+      <form id = "form-update-post">
+        <label for="title-update">Title</label>
+        <input 
+          type="text" 
+          id = "title-update" 
+          name="title" 
+          placeholder="Enter new title"
+        />
+        <label for="body-update">Body</label>
+        <input 
+          type="text" 
+          id = "body-update" 
+          name="body" 
+          placeholder="Enter new stuff"
+        />
+        <label for="image-update">Image</label>
+        <input
+          type="url" 
+          id = "image-update" 
+          name="image" 
+          placeholder="Paste a new image url"
+        />
+        <button>Update Post</button>
+      </form>
+      <form method="dialog"><button>Close</button></form>
+      </dialog>
 
       <footer id="footer" class="footer">Created by Thomas, Kenneth & Lukas</footer>
     </div>
