@@ -15,18 +15,18 @@ html, body {
 
 .header {
   grid-column: 1/-1;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   border-radius: 15px;
   background-color: #d4bd9d;
   border-style: solid;
   border-color: silver;
+  border-width: 2px;
 }
 
 .nav-bar {
   background-color: #383b40;
   border-style: solid;
   border-color: silver;
+  border-width: 2px;
   border-radius: 15px;
   padding: 18px;
   min-height: 350px;
@@ -37,6 +37,7 @@ html, body {
   background-color: #9c896f;
   border-style: solid;
   border-color: silver;
+  border-width: 2px;
   border-radius: 15px;
   padding: 18px;
 }
@@ -46,8 +47,6 @@ html, body {
   background-color: #d4bd9d;
   font-size: 24px;
   padding: 18px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
   border-radius: 15px;
   border-style: solid;
   border-width: 2px;
@@ -55,7 +54,19 @@ html, body {
 }
 
 .menu-btn {
-  margin: 4px;
+  margin: 5px;
+  background-color: #9c896f;
+  color: white;
+  border-style: solid;
+  border-color: white;
+  box-shadow: 0 0 0 2px #9c896f;
+  min-width: 80px;
+  border-radius: 5px;
+}
+
+.menu-btn:hover {
+  color: #383b40;
+  border-style: outset;
 }
 
 .hidden {
