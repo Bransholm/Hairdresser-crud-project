@@ -84,7 +84,7 @@ function changeAdminStatus() {
     document.querySelector("#orders-overview").classList.remove("hidden");
     document.querySelector("#filters-bar").classList.remove("hidden");
   }
-  updateData();
+  //updateData();
 }
 
 //Swaps between the selected hairdressers (Activated by a change)
