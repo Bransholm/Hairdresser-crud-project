@@ -55,9 +55,9 @@ let statusIsAdimin = true;
 // sort and filter funtions....
 
 async function updateData() {
-  orders = await fetchOrders();
-  const listOfOrders = restructureData(orders);
-  orderDOM(listOfOrders);
+  const fetchObjects = await fetchOrders();
+  orders = restructureData(fetchObjects);
+  orderDOM(orders);
 }
 
 // Changes the admin status (when you click the button)
@@ -88,7 +88,7 @@ function changeAdminStatus() {
     document.querySelector("#orders-overview").classList.remove("hidden");
     document.querySelector("#filters-bar").classList.remove("hidden");
   }
-  //updateData();
+  //// updateData();
 }
 
 //Swaps between the selected hairdressers (Activated by a change)
@@ -135,8 +135,10 @@ function restructureData(ordersObject) {
 }
 
 //Looper på listen af orders.
-function orderDOM(ordersList) {
-  for (const orderElement of ordersList) {
+function orderDOM(list) {
+  document.querySelector("#orders-overview").innerHTML = "";
+  //document.querySelector("#forms-div").innerHTML = "";
+  for (const orderElement of list) {
     visualizeOrderElement(orderElement);
   }
 }
@@ -299,9 +301,13 @@ async function createOrder(event) {
     method: "POST",
     body: orderAsJson,
   });
+
   const data = await response.json();
+  if (response.ok) {
+    updateData();
+  }
+
   // Husk at opdatere så vi kan se der sker noget!
-  updateData();
 }
 
 //-----------DELETE RELATERET-----------------
@@ -376,7 +382,7 @@ function filteredSearchInput(event) {
   console.log(value);
   const filteredOrders = filteredSearch(value);
   //Kald funktionen som viser elementer...
-  console.log(filteredOrders);
+  orderDOM(filteredOrders);
 }
 
 function filteredSearch(searchValue) {
@@ -388,5 +394,7 @@ function filteredSearch(searchValue) {
     const behandling = orders.behandling.toLowerCase();
     return behandling.includes(searchValue);
   }
+  console.log("Filter results");
+  console.log(results);
   return results;
 }
