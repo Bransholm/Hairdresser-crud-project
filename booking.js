@@ -31,6 +31,16 @@ function start() {
   document
     .querySelector("#filters-bar")
     .addEventListener("search", filteredSearchInput);
+  //submit event for "form-delete-order"
+  document
+    .querySelector("#form-delete-order")
+    .addEventListener("submit", deleteOrderClicked);
+}
+function deleteOrderClicked(event) {
+  const id = event.target.getAttribute("data-id");
+  deleteOrder(id);
+
+  console.log(deleteOrder);
 }
 
 let hairdresserSelector = 0;
@@ -134,42 +144,44 @@ function visualizeOrderElement(order) {
   const orderView = document.querySelector("#orders-overview");
 
   //Giver HTML-tags til hvert orderElement.
-  const orderHTML =
-    /*html*/
-    `
-    
-  <div class="order-item">
-    <p>Den valgte frisør: ${order.frisør}</p>
-    <p>Den valgte behandling: ${order.behandling}</p>
-    <p>Dato: ${order.dato} Kl: ${order.tid}</p>
-    <p>Navnet på kunden: ${order.navn}</p>
-    <p>Kundes nummer: ${order.telefonNummer}</p>
-    <p>Kundes email: ${order.email}</p>
-    <div class ="btns">
-      <button class="btn-delete">Slet booking</button>
-      <button class="btn-update">Updater booking</button>
-    </div>
-  </div>
+  const orderHTML = /*html*/ `
+      <article class="order-item">
+        <p>Den valgte frisør: ${order.frisør}</p>
+        <p>Den valgte behandling: ${order.behandling}</p>
+        <p>Dato: ${order.dato} Kl: ${order.tid}</p>
+        <p>Navnet på kunden: ${order.navn}</p>
+        <p>Kundes nummer: ${order.telefonNummer}</p>
+        <p>Kundes email: ${order.email}</p>
+      <div class ="btns">
+        <button class="btn-delete">Slet booking</button>
+        <button class="btn-update">Updater booking</button>
+      </div>
+      </article>
 `;
   //Insætter elementet...
   orderView.insertAdjacentHTML("beforeend", orderHTML);
+  //document.querySelector("#orders").insertAdjacentHTML("beforeend", orderHTML);
   // Event listerner til Slet booking knap /DELETE/
+  document
+    .querySelector("#orders-overview article:last-child .btn-delete")
+    .addEventListener("click", deleteClicked);
 
   // I CRUD opgaven blev deleteClicked sat in i denne function, sådan den kunne håndtere hvad der skete når man ville
   // en post. Med samme metode kan vi lave en "deleteOrder" give muligheden for at slette sin booking.
-
-  const orderElement = document.createElement("div");
-  // ... code to create order element
-
-  // Add a delete button to the order element
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Delete";
-  deleteBtn.addEventListener("click", () => {
-    deleteOrder(order.id);
-  });
-  orderElement.appendChild(deleteBtn);
-
-  return orderElement;
+  function deleteClicked(event) {
+    document.querySelector("#dialog-delete-order-form").textContent =
+      order.navn;
+    document.querySelector("#dialog-delete-order-form").textContent = order.tid;
+    document.querySelector("#dialog-delete-order-form").textContent =
+      order.frisør;
+    document
+      .querySelector("#form-delete-order")
+      .setAttribute("data-id", order.id);
+    document.querySelector("#dialog-delete-order").showModal();
+    document
+      .querySelector("#btn-cancel")
+      .addEventListener("click", closeWindow);
+  }
 }
 
 // Setter DOM manipulation for bestillings-forms.
@@ -267,6 +279,31 @@ async function createOrder(event) {
 }
 
 //-----------DELETE RELATERET-----------------
+
+async function deleteOrder(id) {
+  const response = await fetch(`${endpoint}/orders/${id}.json`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    console.log("En booking er blevet slettet fra Firebase");
+    updateData();
+  }
+}
+function handleDeletePostButtons() {
+  const cancelButton = document.querySelector(
+    "#dialog-delete-post .btn-cancel"
+  );
+  const yesButton = document.querySelector(
+    '#dialog-delete-post button[type="submit"]'
+  );
+
+  cancelButton.addEventListener("click", closeWindow);
+  //yesButton.addEventListener("click", yesWindow);
+}
+
+function closeWindow() {
+  document.querySelector("#dialog-delete-order").close();
+}
 
 // -------- FILTERS FUNKTIONEN -------------
 
