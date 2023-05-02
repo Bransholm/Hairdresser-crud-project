@@ -1,7 +1,7 @@
 html, body {
-  font-size: 25px;
-  color: #9c896f;
-  background-color: #383b40;
+  font-size: 13px;
+  color: white;
+  background-color: rgb(232, 232, 232);
   margin: 10px;
   text-align: center;
 }
@@ -9,53 +9,64 @@ html, body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 60px 400px 60px;
-  grid-gap: 10px;
+  grid-template-rows: auto auto auto;
+  grid-gap: 6px;
 }
 
 .header {
   grid-column: 1/-1;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  border-radius: 15px;
   background-color: #d4bd9d;
   border-style: solid;
-  border-color: purple;
+  border-color: silver;
 }
 
 .nav-bar {
-  background-color: #d4bd9d;
+  background-color: #383b40;
   border-style: solid;
-  border-color: purple;
+  border-color: silver;
+  border-radius: 15px;
+  padding: 18px;
+  min-height: 350px;
 }
 
 .content-window {
   grid-column: 2/-1;
-  background-color: #d4bd9d;
+  background-color: #9c896f;
   border-style: solid;
-  border-color: purple;
+  border-color: silver;
+  border-radius: 15px;
+  padding: 18px;
 }
 
 .footer {
   grid-column: 1/-1;
   background-color: #d4bd9d;
+  font-size: 24px;
+  padding: 18px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-radius: 15px;
   border-style: solid;
-  border-color: purple;
+  border-width: 2px;
+  border-color: silver;
 }
 
-
+.menu-btn {
+  margin: 4px;
+}
 
 .hidden {
   display: none;
 }
 
-
 /* Farver #9c896f mørkebrun, #d4bd9d lysebrun, #383b40 mørkegrå */
 .admin {
-  background-color: cadetblue;
+  background-color: #383b40;
 }
 
 .user {
-  background-color: chocolate;
+  background-color: #9c896f;
 }

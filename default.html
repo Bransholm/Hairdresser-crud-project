@@ -9,23 +9,22 @@
   </head>
   <body>
     <div class="grid-container">
-      <header id="header" class="header">FRISØR FANCY</header>
+      <header id="header" class="header"><h1>FRISØR FANCY</h1></header>
 
       <!-- Her skal vi indsætte nogle links de skal vel toggle hidden on and off... -->
       <nav id="nav-bar" class="nav-bar">
-        <button id="frontpageBtn">Forside</button><br />
-        <button id="bookingBtn">Booking</button><br />
-        <button id="infoBtn">Friøsrer</button><br />
-        <button id="photoBtn">Billeder</button><br />
-        <button id="contactBtn">Kontakt</button><br />
+        <button id="frontpageBtn" class="menu-btn">Forside</button><br />
+        <button id="bookingBtn" class="menu-btn">Booking</button><br />
+        <button id="infoBtn" class="menu-btn">Friøsrer</button><br />
+        <button id="photoBtn" class="menu-btn">Billeder</button><br />
+        <button id="contactBtn" class="menu-btn">Kontakt</button><br />
       </nav>
 
       <main class="content-window">
-        <button id="admin-selector">Change to customer</button>
 
         <section id="frontpage">Forside</section>
 
-        <section id="booking">Bestil tid
+        <section id="booking"><button id="admin-selector">Change to customer</button><br>Bestil tid
           <!-- her bliver bestilling vists hvis man er user -->
           <div id="forms-tab">
             <!-- selector der styre hvilken sub-selector der skal vises i forms -->
@@ -61,7 +60,7 @@
       </form>
     </dialog>
 
-      <footer id="footer" class="footer">Thomas, Kenneth & Lukas</footer>
+      <footer id="footer" class="footer">Created by Thomas, Kenneth & Lukas</footer>
     </div>
     <script src="script.js"></script>
     <script src="forside.js"></script>
