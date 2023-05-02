@@ -35,6 +35,10 @@ function start() {
   document
     .querySelector("#form-delete-order")
     .addEventListener("submit", deleteOrderClicked);
+  //submit event for "formupdate-order"
+  document
+    .querySelector("#form-update-order")
+    .addEventListener("submit", updateOrderClicked);
 }
 function deleteOrderClicked(event) {
   const id = event.target.getAttribute("data-id");
@@ -166,8 +170,13 @@ function visualizeOrderElement(order) {
     .querySelector("#orders-overview article:last-child .btn-delete")
     .addEventListener("click", deleteClicked);
 
+  document
+    .querySelector("#orders-overview article:last-child .btn-update")
+    .addEventListener("click", updateClicked);
+
   // I CRUD opgaven blev deleteClicked sat in i denne function, sådan den kunne håndtere hvad der skete når man ville
   // en post. Med samme metode kan vi lave en "deleteOrder" give muligheden for at slette sin booking.
+
   function deleteClicked(event) {
     document.querySelector("#dialog-delete-order-form").textContent =
       order.navn;
@@ -181,6 +190,23 @@ function visualizeOrderElement(order) {
     document
       .querySelector("#btn-cancel")
       .addEventListener("click", closeWindow);
+  }
+  // Ligesom deleteClicked er en nested funktion i visualizeOrderElement, skal
+  // Så skal updateClicked også ligge herinde
+
+  // Funktionen kaldes når man trykker på update booking knappen
+
+  function updateClicked(event) {
+    console.log("Update button clicked");
+    const formUpdateDialog = document.querySelector("#form-update-post");
+    formUpdateDialog.title.value = postObject.title;
+    formUpdateDialog.body.value = postObject.body;
+    formUpdateDialog.image.value = postObject.image;
+    formUpdateDialog.setAttribute("data-id", postObject.id);
+    document.querySelector("#dialog-update-post").showModal();
+    document
+      .querySelector("#form-update-post")
+      .addEventListener("submit", updateOrderClicked);
   }
 }
 
@@ -321,6 +347,26 @@ async function updateOrder(id, title, body, image) {
     console.log("En ordre er blevet opdateret");
     updateData();
   }
+}
+
+function updateOrderClicked(event) {
+  event.preventDefault;
+  console.log(event);
+  const form = event.target;
+
+  const title = form.title.value;
+  const body = form.body.value;
+  const image = form.image.value;
+
+  const id = form.getAttribute("data-id");
+
+  console.log(title);
+  console.log(body);
+  console.log(image);
+
+  updateOrder(id, title, body, image);
+
+  document.querySelector("#dialog-update-order").close();
 }
 
 // -------- FILTERS FUNKTIONEN -------------
