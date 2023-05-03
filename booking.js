@@ -361,15 +361,24 @@ function closeWindow() {
 }
 //-----------UPDATE RELATERET-----------------
 
-async function updateOrder() {
+async function updateOrder(
+  id,
+  frisør,
+  behandling,
+  dato,
+  tid,
+  navn,
+  telefonNummer,
+  email
+) {
   const orderToUpdate = {
-    frisør: form.frisør.value,
-    behandling: form.behandling.value,
-    dato: form.dato.value,
-    tid: form.tid.value,
-    navn: form.navn.value,
-    telefonNummer: form.telefonNummer.value,
-    email: form.email.value,
+    frisør,
+    behandling,
+    dato,
+    tid,
+    navn,
+    telefonNummer,
+    email,
   };
   const json = JSON.stringify(orderToUpdate);
   const response = await fetch(`${endpoint}/orders/${id}.json`, {
