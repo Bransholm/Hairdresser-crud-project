@@ -31,12 +31,15 @@
           <p><img class="billeder-forside" src="billeder/style15.jpg" alt=""><img class="billeder-forside" src="billeder/fancy1.jpg" alt=""><img class="billeder-forside" src="billeder/style12.jpg" alt=""></p>
         </section>
 
-        <section id="booking"><button id="admin-selector">Change to customer</button><br>Bestil tid
+        <section id="booking">
+          <button id="admin-selector">Change to customer</button><br />Bestil
+          tid
           <!-- her bliver bestilling vists hvis man er user -->
           <div id="forms-tab">
             <!-- selector der styre hvilken sub-selector der skal vises i forms -->
             <select id="hairdresser-selected">
-              <option value="1" selected>Rastafari hår</option>
+              <option value="0" selected>---</option>
+              <option value="1">Rastafari hår</option>
               <option value="2">Momor Klip</option>
               <option value="3">CBS style</option>
               <option value="4">Papfars frisør</option>
@@ -58,47 +61,49 @@
         <section id="contacts">Kontakt</section>
       </main>
 
-    <!--Dialog delete order, som kommer frem når man trykker på "Slet booking"-->
-    <dialog id="dialog-delete-order">
-      <h2>Vil du gerne slette din ordrer</h2>
-      <p id="dialog-delete-order-form">form of order</p>
-      <form method="dialog" id="form-delete-order">
-        <button type="button" id="btn-cancel">Nej</button>
-        <button type="submit">Ja</button>
-      </form>
-    </dialog>
-
-    <!--Dialog Update order, som kommer frem når man trykker på "Updater booking"-->
-    <dialog id="dialog-update-order">
-      <h2>Update post</h2>
-      <form id = "form-update-order">
-        <label for="title-update">Title</label>
-        <input 
-          type="text" 
-          id = "title-update" 
-          name="title" 
-          placeholder="Enter new title"
-        />
-        <label for="body-update">Body</label>
-        <input 
-          type="text" 
-          id = "body-update" 
-          name="body" 
-          placeholder="Enter new stuff"
-        />
-        <label for="image-update">Image</label>
-        <input
-          type="url" 
-          id = "image-update" 
-          name="image" 
-          placeholder="Paste a new image url"
-        />
-        <button>Update Post</button>
-      </form>
-      <form method="dialog"><button>Close</button></form>
+      <!--Dialog delete order, som kommer frem når man trykker på "Slet booking"-->
+      <dialog id="dialog-delete-order">
+        <h2>Vil du gerne slette din ordrer</h2>
+        <p id="dialog-delete-order-form">form of order</p>
+        <form method="dialog" id="form-delete-order">
+          <button type="button" id="btn-cancel">Nej</button>
+          <button type="submit">Ja</button>
+        </form>
       </dialog>
 
-      <footer id="footer" class="footer">Created by Thomas, Kenneth & Lukas</footer>
+      <!--Dialog Update order, som kommer frem når man trykker på "Updater booking"-->
+      <dialog id="dialog-update-order">
+        <h2>Update post</h2>
+        <form id="form-update-order">
+          <label for="title-update">Title</label>
+          <input
+            type="text"
+            id="title-update"
+            name="title"
+            placeholder="Enter new title"
+          />
+          <label for="body-update">Body</label>
+          <input
+            type="text"
+            id="body-update"
+            name="body"
+            placeholder="Enter new stuff"
+          />
+          <label for="image-update">Image</label>
+          <input
+            type="url"
+            id="image-update"
+            name="image"
+            placeholder="Paste a new image url"
+          />
+          <button>Update Post</button>
+        </form>
+        <form method="dialog"><button>Close</button></form>
+      </dialog>
+
+      <footer id="footer" class="footer">
+        Created by Thomas, Kenneth & Lukas
+      </footer>
     </div>
     <script src="script.js"></script>
     <script src="forside.js"></script>
