@@ -210,14 +210,18 @@ function visualizeOrderElement(order) {
 
   function updateClicked(event) {
     console.log("Update button clicked");
-    const formUpdateDialog = document.querySelector("#form-update-post");
-    formUpdateDialog.title.value = postObject.title;
-    formUpdateDialog.body.value = postObject.body;
-    formUpdateDialog.image.value = postObject.image;
-    formUpdateDialog.setAttribute("data-id", postObject.id);
-    document.querySelector("#dialog-update-post").showModal();
+    const formUpdateDialog = document.querySelector("#form-update-order");
+    formUpdateDialog.frisør.value = order.frisør;
+    formUpdateDialog.behandling.value = order.behandling;
+    formUpdateDialog.dato.value = order.dato;
+    formUpdateDialog.tid.value = order.tid;
+    formUpdateDialog.navn.value = order.navn;
+    formUpdateDialog.telefonNummer.value = order.telefonNummer;
+    formUpdateDialog.email.value = order.email;
+    formUpdateDialog.setAttribute("data-id", order.id);
+    document.querySelector("#dialog-update-order").showModal();
     document
-      .querySelector("#form-update-post")
+      .querySelector("#form-update-order")
       .addEventListener("submit", updateOrderClicked);
   }
 }
@@ -314,6 +318,7 @@ async function createOrder(event) {
 
   const data = await response.json();
   if (response.ok) {
+    console.log("En ny booking er blevet oprettet!");
     updateData();
   }
 
@@ -348,11 +353,24 @@ function closeWindow() {
 }
 //-----------UPDATE RELATERET-----------------
 
-async function updateOrder(id, title, body, image) {
+async function updateOrder(
+  id,
+  frisør,
+  behandling,
+  dato,
+  tid,
+  navn,
+  telefonNummer,
+  email
+) {
   const orderToUpdate = {
-    title,
-    body,
-    image,
+    frisør,
+    behandling,
+    dato,
+    tid,
+    navn,
+    telefonNummer,
+    email,
   };
   const json = JSON.stringify(orderToUpdate);
   const response = await fetch(`${endpoint}/orders/${id}.json`, {
@@ -370,17 +388,25 @@ function updateOrderClicked(event) {
   console.log(event);
   const form = event.target;
 
-  const title = form.title.value;
-  const body = form.body.value;
-  const image = form.image.value;
+  const frisør = form.frisør.value;
+  const behandling = form.behandling.value;
+  const dato = form.dato.value;
+  const tid = form.tid.value;
+  const navn = form.navn.value;
+  const telefonNummer = form.telefonNummer;
+  const email = form.email.value;
 
   const id = form.getAttribute("data-id");
 
-  console.log(title);
-  console.log(body);
-  console.log(image);
+  console.log(frisør);
+  console.log(behandling);
+  console.log(dato);
+  console.log(tid);
+  console.log(navn);
+  console.log(telefonNummer);
+  console.log(email);
 
-  updateOrder(id, title, body, image);
+  updateOrder(id, frisør, behandling, dato, tid, navn, telefonNummer, email);
 
   document.querySelector("#dialog-update-order").close();
 }
