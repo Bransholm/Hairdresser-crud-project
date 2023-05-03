@@ -39,7 +39,10 @@ function start() {
   document
     .querySelector("#form-update-order")
     .addEventListener("submit", updateOrderClicked);
+
+  setAdmin();
 }
+
 function deleteOrderClicked(event) {
   const id = event.target.getAttribute("data-id");
   deleteOrder(id);
@@ -65,30 +68,37 @@ function changeAdminStatus() {
   //Skifter til kunde-mode
   if (statusIsAdimin == true) {
     statusIsAdimin = false;
-    document.querySelector("#admin-selector").textContent = "Change to admin";
-    //Skifter bagrundsfarve til kunde-mode.
-    document.querySelector("main").classList.add("user");
-    document.querySelector("main").classList.remove("admin");
-    //Viser bestilling forms til kunden
-    document.querySelector("#forms-tab").classList.remove("hidden");
-    // Skjuler order-list og filter-baren for kunden
-    document.querySelector("#orders-overview").classList.add("hidden");
-    document.querySelector("#filters-bar").classList.add("hidden");
+    setCustomer();
   } else {
     // Skifter til admin-mode;
     statusIsAdimin = true;
-    document.querySelector("#admin-selector").textContent =
-      "Change to customer";
-    //Skifter til admin-farve-mode.
-    document.querySelector("main").classList.add("admin");
-    document.querySelector("main").classList.remove("user");
-    //Skjuler forms for admin
-    document.querySelector("#forms-tab").classList.add("hidden");
-    // Viser admin orders og filter-baren
-    document.querySelector("#orders-overview").classList.remove("hidden");
-    document.querySelector("#filters-bar").classList.remove("hidden");
+    setAdmin();
   }
   //// updateData();
+}
+
+function setAdmin() {
+  document.querySelector("#admin-selector").textContent = "Change to customer";
+  //Skifter til admin-farve-mode.
+  document.querySelector("main").classList.add("admin");
+  document.querySelector("main").classList.remove("user");
+  //Skjuler forms for admin
+  document.querySelector("#forms-tab").classList.add("hidden");
+  // Viser admin orders og filter-baren
+  document.querySelector("#orders-overview").classList.remove("hidden");
+  document.querySelector("#filters-bar").classList.remove("hidden");
+}
+
+function setCustomer() {
+  document.querySelector("#admin-selector").textContent = "Change to admin";
+  //Skifter bagrundsfarve til kunde-mode.
+  document.querySelector("main").classList.add("user");
+  document.querySelector("main").classList.remove("admin");
+  //Viser bestilling forms til kunden
+  document.querySelector("#forms-tab").classList.remove("hidden");
+  // Skjuler order-list og filter-baren for kunden
+  document.querySelector("#orders-overview").classList.add("hidden");
+  document.querySelector("#filters-bar").classList.add("hidden");
 }
 
 //Swaps between the selected hairdressers (Activated by a change)
