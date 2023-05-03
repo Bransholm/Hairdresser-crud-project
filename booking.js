@@ -45,7 +45,9 @@ function start() {
     .addEventListener("change", sortingFunction);
   setCustomer();
 
-  document.querySelector("#filterOrders").addEventListener("change",filterSelector);
+  document
+    .querySelector("#filterOrders")
+    .addEventListener("change", filterSelector);
 }
 
 function deleteOrderClicked(event) {
@@ -306,6 +308,7 @@ function setDOM() {
 
 //Creates a new order when submit is pressed;
 async function createOrder(event) {
+  // event.preventDefault();
   console.log("Order submitted");
   const form = event.target;
 
@@ -318,6 +321,10 @@ async function createOrder(event) {
     telefonNummer: form.userPhone.value,
     email: form.userEmail.value,
   };
+
+  event.preventDefault();
+  // Vi mangler en CLOSE FORMS
+
   const url = `${endpoint}/orders.json`;
   const orderAsJson = await JSON.stringify(orderElement);
   const response = await fetch(url, {
@@ -372,6 +379,8 @@ async function updateOrder(
   telefonNummer,
   email
 ) {
+  console.log("yippie alt det der....");
+
   const orderToUpdate = {
     frisør,
     behandling,
@@ -381,12 +390,19 @@ async function updateOrder(
     telefonNummer,
     email,
   };
+
+  console.log("Kig her");
+  console.log(orderToUpdate);
+
   const json = JSON.stringify(orderToUpdate);
   const response = await fetch(`${endpoint}/orders/${id}.json`, {
     method: "PUT",
     body: json,
   });
+
+  console.log(response);
   console.log(response.id);
+
   if (response.ok) {
     console.log("En ordre er blevet opdateret");
     updateData();
@@ -394,8 +410,9 @@ async function updateOrder(
 }
 
 function updateOrderClicked(event) {
-  event.preventDefault;
-  console.log(event);
+  event.preventDefault();
+  // console.log(event);
+  console.log("update er klikket");
   const form = event.target;
 
   const frisør = form.frisør.value;
@@ -408,13 +425,13 @@ function updateOrderClicked(event) {
 
   const id = form.getAttribute("data-id");
 
-  console.log(frisør);
-  console.log(behandling);
-  console.log(dato);
-  console.log(tid);
-  console.log(navn);
-  console.log(telefonNummer);
-  console.log(email);
+  // console.log(frisør);
+  // console.log(behandling);
+  // console.log(dato);
+  // console.log(tid);
+  // console.log(navn);
+  // console.log(telefonNummer);
+  // console.log(email);
 
   updateOrder(id, frisør, behandling, dato, tid, navn, telefonNummer, email);
 
@@ -423,42 +440,50 @@ function updateOrderClicked(event) {
 
 // -------- FILTERS FUNKTIONEN -------------
 
-// function filterSelector(event){
-//   const 
-//   if ()
+// function filterSelector(event) {
+// const filterValue = event.target.value;
+// if (filterValue == ""){
+
 // }
 
+// }
 
-function searchAmongAll(searchValue){
-for(const order in orders){
-  x[y].includes(searchValue);
-}
-
-}
-
+// function searchAmongAll(searchValue) {
+//   for (const order in orders) {
+//     x[y].includes(searchValue);
+//   }
+// }
 
 function filteredSearchInput(event) {
   const value = event.target.value;
   console.log(value);
   const filteredOrders = filteredSearch(value);
   //Kald funktionen som viser elementer...
+  console.log(filteredOrders);
   orderDOM(filteredOrders);
 }
 
 function filteredSearch(searchValue) {
   searchValue = searchValue.toLowerCase();
   //hvorkommer order/posts fra?
-  const results = orders.filter(checkTitle);
+  const filterCriteria = document.querySelector("#filterOrders").value;
 
-  function checkTitle(orders) {
+  if (filterCriteria == "service") {
     const behandling = orders.behandling.toLowerCase();
     return behandling.includes(searchValue);
+  } else if (filterCriteria == "fullName") {
+    const navn = orders.navn.toLowerCase();
+    return navn.includes(searchValue);
   }
-  console.log("Filter results");
-  console.log(results);
-  return results;
 }
 
+function searchCriteria() {
+  console.log(filterCriteria);
+  let findThis;
+
+  console.log(findThis);
+  return findThis;
+}
 
 //------ SORT FUNKTIONER-------------------
 function sortingFunction(event) {
@@ -473,7 +498,6 @@ function sortingFunction(event) {
   }
   orderDOM(orders);
 }
-
 
 function sortByHairdresser(a, b) {
   console.log("Sorter frisøren");
