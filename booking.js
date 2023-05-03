@@ -44,6 +44,8 @@ function start() {
     .querySelector("#sort-selected")
     .addEventListener("change", sortingFunction);
   setCustomer();
+
+  document.querySelector("#filterOrders").addEventListener("change",filterSelector);
 }
 
 function deleteOrderClicked(event) {
@@ -393,6 +395,20 @@ function updateOrderClicked(event) {
 
 // -------- FILTERS FUNKTIONEN -------------
 
+// function filterSelector(event){
+//   const 
+//   if ()
+// }
+
+
+function searchAmongAll(searchValue){
+for(const order in orders){
+  x[y].includes(searchValue);
+}
+
+}
+
+
 function filteredSearchInput(event) {
   const value = event.target.value;
   console.log(value);
@@ -415,6 +431,8 @@ function filteredSearch(searchValue) {
   return results;
 }
 
+
+//------ SORT FUNKTIONER-------------------
 function sortingFunction(event) {
   const sortCriteria = event.target.value;
   console.log(sortCriteria);
@@ -428,7 +446,7 @@ function sortingFunction(event) {
   orderDOM(orders);
 }
 
-// SORT FUNKTIONER
+
 function sortByHairdresser(a, b) {
   console.log("Sorter frisøren");
   return a.frisør - b.frisør;

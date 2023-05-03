@@ -86,11 +86,17 @@
             <option value="customerName">Kunde</option>
           </select>
 
-          <!-- her bliver ordre vists hvis man er admin -->
+          <!-- Afsnit for filter funktioner -->
           <div id="orders-filter">
+            <lable for="filterOrders">Filtrer efter</lable>
+            <select id="filterOrders" name="filterOrders">
+              <option value="hairdresser">Frisør</option>
+              <option value="time">Tidspunkt</option>
+            </select>
             <input type="text" id="filters-bar" />
           </div>
 
+          <!-- her bliver ordre vists hvis man er admin -->
           <div id="orders-overview"></div>
         </section>
 
