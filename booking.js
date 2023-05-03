@@ -208,12 +208,14 @@ function visualizeOrderElement(order) {
 
   // Funktionen kaldes når man trykker på update booking knappen
 
-  function updateClicked(event, order) {
+  function updateClicked(event) {
     console.log("Update button clicked");
     const formUpdateDialog = document.querySelector("#form-update-order");
-    formUpdateDialog.orderDate.value = order.orderDate;
-    formUpdateDialog.orderTime.value = order.orderTime;
-    formUpdateDialog.fullName.value = order.fullName;
+    formUpdateDialog.frisør.value = order.frisør;
+    formUpdateDialog.behandling.value = order.behandling;
+    formUpdateDialog.dato.value = order.dato;
+    formUpdateDialog.tid.value = order.tid;
+    formUpdateDialog.navn.value = order.navn;
     formUpdateDialog.telefonNummer.value = order.telefonNummer;
     formUpdateDialog.email.value = order.email;
     formUpdateDialog.setAttribute("data-id", order.id);
@@ -351,30 +353,22 @@ function closeWindow() {
 }
 //-----------UPDATE RELATERET-----------------
 
-async function updateOrder(
-  id,
-  frisør,
-  behandling,
-  dato,
-  tid,
-  navn,
-  telefonNummer,
-  email
-) {
+async function updateOrder() {
   const orderToUpdate = {
-    frisør,
-    behandling,
-    dato,
-    tid,
-    navn,
-    telefonNummer,
-    email,
+    frisør: form.frisør.value,
+    behandling: form.behandling.value,
+    dato: form.dato.value,
+    tid: form.tid.value,
+    navn: form.navn.value,
+    telefonNummer: form.telefonNummer.value,
+    email: form.email.value,
   };
   const json = JSON.stringify(orderToUpdate);
   const response = await fetch(`${endpoint}/orders/${id}.json`, {
     method: "PUT",
     body: json,
   });
+  console.log(response.id);
   if (response.ok) {
     console.log("En ordre er blevet opdateret");
     updateData();

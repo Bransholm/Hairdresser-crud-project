@@ -104,24 +104,42 @@
 
       <!--Dialog Update order, som kommer frem når man trykker på "Updater booking"-->
       <dialog id="dialog-update-order">
-        <h2>Update post</h2>
         <form id="form-update-order">
-          <div>${htmlDOM}</div>
-          <lable for="orderDate">Dato</lable>
-          <input type="date" id="orderDate-update" name="orderDate" />
-          <lable for="orderTime">Tid</lable>
-          <input type="time" id="orderTime-update" name="orderTime" />
-          <legend>Bruger Information</legend>
-          <lable for="fullName">Navn</lable>
-          <input type="text" id="fullName-update" name="full-name" />
-          <lable for="userPhone">Tlf. Nummer</lable>
-          <input type="text" id="userPhone-update" name="user-phone" />
-          <lable>Email</lable>
-          <input type="email" id="userEmail-update" name="userEmail" />
+          <h2>Opdater booking</h2>
+          <label for="frisør">Frisør:</label>
+          <input type="text" id="update-frisør" name="frisør" required />
+
+          <label for="behandling">Behandling:</label>
+          <input
+            type="text"
+            id="update-behandling"
+            name="behandling"
+            required
           />
-          <button>Updater Booking</button>
+
+          <label for="dato">Dato:</label>
+          <input type="date" id="update-dato" name="dato" required />
+
+          <label for="tid">Tid:</label>
+          <input type="time" id="update-tid" name="tid" required />
+
+          <label for="navn">Navn:</label>
+          <input type="text" id="update-navn" name="navn" required />
+
+          <label for="telefonNummer">Telefonnummer:</label>
+          <input
+            type="tel"
+            id="update-telefonNummer"
+            name="telefonNummer"
+            required
+          />
+
+          <label for="email">Email:</label>
+          <input type="email" id="update-email" name="email" required />
+
+          <button type="submit">Opdater</button>
+          <button type="button" id="cancel-update-order">Annuller</button>
         </form>
-        <form method="dialog"><button>Annuller</button></form>
       </dialog>
 
       <footer id="footer" class="footer">
