@@ -407,7 +407,7 @@ async function updateOrder(
 }
 
 function updateOrderClicked(event) {
-  event.preventDefault()();
+  event.preventDefault();
   // console.log(event);
   console.log("update er klikket");
   const form = event.target;
