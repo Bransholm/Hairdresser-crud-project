@@ -22,7 +22,7 @@ html, body {
   border-width: 2px;
   min-height: 100px;
   max-height: 100px;
-  min-width: 500px;
+  min-width: 600px;
 }
 
 .nav-bar {
@@ -79,6 +79,11 @@ html, body {
 .billeder-forside {
   height: 200px;
   padding: 10px;
+}
+
+.billeder-billedeside {
+  height: 105%;
+  margin: 5px;
 }
 
 .remove-paddind-top {
