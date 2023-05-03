@@ -1,5 +1,5 @@
 html, body {
-  font-size: 13px;
+  font-size: 14px;
   color: white;
   background-color: rgb(232, 232, 232);
   margin: 10px;
@@ -84,6 +84,17 @@ html, body {
 .billeder-billedeside {
   height: 105%;
   margin: 5px;
+}
+
+#kontakt-billede-map {
+  height: 350px;
+}
+
+.min-tekst {
+  font-size: 18px;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 30px;
 }
 
 .remove-paddind-top {
