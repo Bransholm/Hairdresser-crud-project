@@ -22,7 +22,7 @@ html, body {
   border-width: 2px;
   min-height: 100px;
   max-height: 100px;
-  min-width: 600px;
+  min-width: 500px;
 }
 
 .nav-bar {
@@ -74,6 +74,15 @@ html, body {
 
 #billede-tilbud {
   padding-top: 25px;
+}
+
+.billeder-forside {
+  height: 200px;
+  padding: 10px;
+}
+
+.remove-paddind-top {
+padding-top: 0px;
 }
 
 .hidden {
