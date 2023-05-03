@@ -208,14 +208,12 @@ function visualizeOrderElement(order) {
 
   // Funktionen kaldes når man trykker på update booking knappen
 
-  function updateClicked(event) {
+  function updateClicked(event, order) {
     console.log("Update button clicked");
     const formUpdateDialog = document.querySelector("#form-update-order");
-    formUpdateDialog.frisør.value = order.frisør;
-    formUpdateDialog.behandling.value = order.behandling;
-    formUpdateDialog.dato.value = order.dato;
-    formUpdateDialog.tid.value = order.tid;
-    formUpdateDialog.navn.value = order.navn;
+    formUpdateDialog.orderDate.value = order.orderDate;
+    formUpdateDialog.orderTime.value = order.orderTime;
+    formUpdateDialog.fullName.value = order.fullName;
     formUpdateDialog.telefonNummer.value = order.telefonNummer;
     formUpdateDialog.email.value = order.email;
     formUpdateDialog.setAttribute("data-id", order.id);
@@ -277,9 +275,9 @@ function setDOM() {
    <input type="time" id="orderTime" name="orderTime">
    <legend>Bruger Information</legend>
    <lable for="fullName">Navn</lable>
-   <input type="text" id="fullName" name="full-name">
+   <input type="text" id="fullName" name="fullName">
    <lable for="userPhone">Tlf. Nummer</lable>
-   <input type="text" id="userPhone" name="user-phone">
+   <input type="text" id="userPhone" name="userPhone">
    <lable>Email</lable>
    <input type="email" id="userEmail" name="userEmail">
    
