@@ -39,8 +39,11 @@ function start() {
   document
     .querySelector("#form-update-order")
     .addEventListener("submit", updateOrderClicked);
-
-  setAdmin();
+  // Change event for valgt af data-sortering
+  document
+    .querySelector("#sort-selected")
+    .addEventListener("change", sortingFunction);
+  setCustomer();
 }
 
 function deleteOrderClicked(event) {
@@ -51,7 +54,7 @@ function deleteOrderClicked(event) {
 }
 
 let hairdresserSelector = 0;
-let statusIsAdimin = true;
+let statusIsAdimin = false;
 
 //create -elements
 //update and delete baseon on id...
@@ -69,7 +72,7 @@ function changeAdminStatus() {
   if (statusIsAdimin == true) {
     statusIsAdimin = false;
     setCustomer();
-  } else {
+  } else if (statusIsAdimin == false) {
     // Skifter til admin-mode;
     statusIsAdimin = true;
     setAdmin();
@@ -110,6 +113,9 @@ function modeSelected() {
 
 //Changes the global variable hairdresser selector
 function changeOfMode(selected) {
+  document
+    .querySelector("#hairdresser-selected option")
+    .classList.add("remove");
   if (selected == "1") {
     hairdresserSelector = 1;
   } else if (selected == "2") {
@@ -407,4 +413,35 @@ function filteredSearch(searchValue) {
   console.log("Filter results");
   console.log(results);
   return results;
+}
+
+function sortingFunction(event) {
+  const sortCriteria = event.target.value;
+  console.log(sortCriteria);
+  if (sortCriteria === "hairdresser") {
+    orders.sort(sortByHairdresser);
+  } else if (sortCriteria === "customerName") {
+    orders.sort(sortByCustomer);
+  } else if (sortCriteria === "time") {
+    orders.sort(sortByDate);
+  }
+  orderDOM(orders);
+}
+
+// SORT FUNKTIONER
+function sortByHairdresser(a, b) {
+  console.log("Sorter frisøren");
+  return a.frisør - b.frisør;
+}
+
+function sortByDate(a, b) {
+  //https://stackoverflow.com/questions/41673669/how-to-sort-object-array-by-time-in-javascript
+  const timeA = a.dato + " " + a.tid;
+  const timeB = b.dato + " " + b.tid;
+  return timeA.localeCompare(timeB);
+}
+
+function sortByCustomer(a, b) {
+  console.log("Sorter navnet");
+  return a.navn.localeCompare(b.navn);
 }
