@@ -20,6 +20,9 @@ html, body {
   border-style: solid;
   border-color: silver;
   border-width: 2px;
+  min-height: 100px;
+  max-height: 100px;
+  min-width: 600px;
 }
 
 .nav-bar {
@@ -60,13 +63,17 @@ html, body {
   border-style: solid;
   border-color: white;
   box-shadow: 0 0 0 2px #9c896f;
-  min-width: 80px;
+  min-width: 90px;
   border-radius: 5px;
 }
 
 .menu-btn:hover {
   color: #383b40;
   border-style: outset;
+}
+
+#billede-tilbud {
+  padding-top: 25px;
 }
 
 .hidden {
