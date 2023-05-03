@@ -219,7 +219,7 @@ function visualizeOrderElement(order) {
 
   // Funktionen kaldes når man trykker på update booking knappen
 
-  function updateClicked(event) {
+  function updateClicked() {
     console.log("Update button clicked");
     const formUpdateDialog = document.querySelector("#form-update-order");
     formUpdateDialog.frisør.value = order.frisør;
@@ -399,10 +399,7 @@ async function updateOrder(
     method: "PUT",
     body: json,
   });
-
-  console.log(response);
   console.log(response.id);
-
   if (response.ok) {
     console.log("En ordre er blevet opdateret");
     updateData();
@@ -410,7 +407,7 @@ async function updateOrder(
 }
 
 function updateOrderClicked(event) {
-  event.preventDefault();
+  event.preventDefault()();
   // console.log(event);
   console.log("update er klikket");
   const form = event.target;
@@ -475,14 +472,6 @@ function filteredSearch(searchValue) {
     const navn = orders.navn.toLowerCase();
     return navn.includes(searchValue);
   }
-}
-
-function searchCriteria() {
-  console.log(filterCriteria);
-  let findThis;
-
-  console.log(findThis);
-  return findThis;
 }
 
 //------ SORT FUNKTIONER-------------------

@@ -13,6 +13,11 @@ html, body {
   grid-gap: 6px;
 }
 
+.grid-frisor {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
 .header {
   grid-column: 1/-1;
   border-radius: 15px;
@@ -86,11 +91,24 @@ html, body {
   margin: 5px;
 }
 
+.medarbejder-img {
+  height: 200px;
+}
+
+.medarbejder-navn {
+  font-size: 16px;
+}
+
+.medarbejder-div {
+  background-color: #d4bd9d;
+  border-radius: 15px;
+}
+
 #kontakt-billede-map {
   height: 350px;
 }
 
-.min-tekst {
+.kontakt-adresse-tekst {
   font-size: 18px;
   padding: 0px;
   margin: 0px;
