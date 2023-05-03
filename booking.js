@@ -45,7 +45,9 @@ function start() {
     .addEventListener("change", sortingFunction);
   setCustomer();
 
-  document.querySelector("#filterOrders").addEventListener("change",filterSelector);
+  document
+    .querySelector("#filterOrders")
+    .addEventListener("change", filterSelector);
 }
 
 function deleteOrderClicked(event) {
@@ -217,7 +219,7 @@ function visualizeOrderElement(order) {
 
   // Funktionen kaldes når man trykker på update booking knappen
 
-  function updateClicked(event) {
+  function updateClicked() {
     console.log("Update button clicked");
     const formUpdateDialog = document.querySelector("#form-update-order");
     formUpdateDialog.frisør.value = order.frisør;
@@ -386,7 +388,6 @@ async function updateOrder(
     method: "PUT",
     body: json,
   });
-  console.log(response.id);
   if (response.ok) {
     console.log("En ordre er blevet opdateret");
     updateData();
@@ -394,7 +395,7 @@ async function updateOrder(
 }
 
 function updateOrderClicked(event) {
-  event.preventDefault;
+  event.preventDefault();
   console.log(event);
   const form = event.target;
 
@@ -424,18 +425,15 @@ function updateOrderClicked(event) {
 // -------- FILTERS FUNKTIONEN -------------
 
 // function filterSelector(event){
-//   const 
+//   const
 //   if ()
 // }
 
-
-function searchAmongAll(searchValue){
-for(const order in orders){
-  x[y].includes(searchValue);
+function searchAmongAll(searchValue) {
+  for (const order in orders) {
+    x[y].includes(searchValue);
+  }
 }
-
-}
-
 
 function filteredSearchInput(event) {
   const value = event.target.value;
@@ -459,7 +457,6 @@ function filteredSearch(searchValue) {
   return results;
 }
 
-
 //------ SORT FUNKTIONER-------------------
 function sortingFunction(event) {
   const sortCriteria = event.target.value;
@@ -473,7 +470,6 @@ function sortingFunction(event) {
   }
   orderDOM(orders);
 }
-
 
 function sortByHairdresser(a, b) {
   console.log("Sorter frisøren");
