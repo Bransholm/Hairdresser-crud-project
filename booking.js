@@ -184,6 +184,7 @@ function visualizeOrderElement(order) {
 `;
   //Insætter elementet...
   orderView.insertAdjacentHTML("beforeend", orderHTML);
+
   //document.querySelector("#orders").insertAdjacentHTML("beforeend", orderHTML);
   // Event listerner til Slet booking knap /DELETE/
   document
