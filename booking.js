@@ -306,11 +306,11 @@ function setDOM() {
    <input type="time" id="orderTime" name="orderTime" required>
    <legend>Bruger Information</legend>
    <lable for="fullName">Navn</lable>
-   <input type="text" id="fullName" name="fullName" required>
+   <input type="text" id="fullName" name="fullName" placeholder="Indtast dit navn" required>
    <lable for="userPhone">Tlf. Nummer</lable>
-   <input type="text" id="userPhone" name="userPhone" required>
+   <input type="text" id="userPhone" name="userPhone" placeholder="Indtast telefon nr." required>
    <lable>Email</lable>
-   <input type="email" id="userEmail" name="userEmail" required>
+   <input type="email" id="userEmail" name="userEmail" placeholder="Indstast em@il" required>
    
    
 
