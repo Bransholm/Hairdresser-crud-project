@@ -79,37 +79,104 @@
             <div id="forms-div"></div>
           </div>
 
-          <!-- her bliver sort styret -->
-          <select id="sort-selected" name="sort-selected">
-            <option value="hairdresser">Frisør</option>
-            <option value="time">Tidspunkt</option>
-            <option value="customerName">Kunde</option>
-          </select>
-
-          <!-- Afsnit for filter funktioner -->
-          <div id="orders-filter">
-            <lable for="filterOrders">Filtrer efter</lable>
-            <select id="filterOrders" name="filterOrders">
-              <option value="customerName">Kunder</option>
-              <option value="service">behandlinger</option>
+          <article id="admin-view">
+            <!-- her bliver sort styret -->
+            <select id="sort-selected" name="sort-selected">
+              <option value="hairdresser">Frisør</option>
+              <option value="time">Tidspunkt</option>
+              <option value="customerName">Kunde</option>
             </select>
-            <input type="text" id="filters-bar" />
-          </div>
-          <!-- her bliver ordre vists hvis man er admin -->
-          <div id="orders-overview"></div>
+
+            <!-- Afsnit for filter funktioner -->
+            <div id="orders-filter">
+              <lable for="filterOrders">Filtrer efter</lable>
+              <select id="filterOrders" name="filterOrders">
+                <option value="customerName">Kunder</option>
+                <option value="service">behandlinger</option>
+              </select>
+              <input type="text" id="filters-bar" />
+            </div>
+            <!-- her bliver ordre vists hvis man er admin -->
+            <div id="orders-overview"></div>
+          </article>
         </section>
 
         <section id="shop-info">
           <h1>Vores frisører</h1>
-          <p>Her kan du se alle vores flinke frisører som altid står klar til at hjælpe dig med at få lækkert hår...</p>
+          <p>
+            Her kan du se alle vores flinke frisører som altid står klar til at
+            hjælpe dig med at få lækkert hår...
+          </p>
           <div class="grid-frisor">
-            <div class="medarbejder-div"><p class="medarbejder-navn">Peter Lind</p><img class="medarbejder-img" src="billeder/peter.jpg" alt=""><p class="medarbejder-beskrivelse">Peter er en yderst erfaren frisør, og har været i salonen i over 20 år. Hans speciale er dreadlocks, cornrows, hippiehår og snakke med vores kunder. Men Peter kan klippe alt - Selv katte.</p></div>
-            <div class="medarbejder-div"><p class="medarbejder-navn">Rasmus Cederdorff</p><img class="medarbejder-img" src="billeder/rasmus.jpg" alt=""><p class="medarbejder-beskrivelse">Rasmus er super arrangeret og tager alt den tid der skal til for, at dit hår bliver helt perfekt på millimeteren. Særligt de gamle damer er vilde med hans smil og hans evne indenfor pagehår, krøller og gammeldags frisurer.</p></div>
-            <div class="medarbejder-div"><p class="medarbejder-navn">Oskar Tuska</p><img class="medarbejder-img" src="billeder/oskar.jpg" alt=""><p class="medarbejder-beskrivelse">Oskar har levet det meste af hans liv som fuckboy, og den stil har han taget med ind i salonen igennem de sidste 11 år, hvor han er kendt for hans speciale i at lave fuckboyhår, karseklip, og army cut med stil.</p></div>
-            <div class="medarbejder-div"><p class="medarbejder-navn">Lenka Otap</p><img class="medarbejder-img" src="billeder/lenka.jpg" alt=""><p class="medarbejder-beskrivelse">Lenka er vanvittig god til at lave smørhår, Trumphår, spytslikkerhår. Hun har arbejdet i salonen de sidste 4 år. Både sidste år og i år har hun vundet De Nordiske Mesterskaber i Slikhår. En ægte hårchamp.</p></div>
-            <div class="medarbejder-div"><p class="medarbejder-navn">Lukas Alexsander Maribom</p><img class="medarbejder-img" src="billeder/Lukas.jpg" alt=""><p class="medarbejder-beskrivelse">Lukas er frisørelev og har været i salonen i 2 år og er snart færdigudlært som frisør. Han er bestemt ikke nærig med saksen og han kan trylle enhver pige med langt hår om til at ligne en dreng på rekordtid.</p></div>
-            <div class="medarbejder-div"><p class="medarbejder-navn">Kenneth Bransholm Schou</p><img class="medarbejder-img" src="billeder/Kenneth.jpg" alt=""><p class="medarbejder-beskrivelse">Kenneth er frisørelev og har været her i 1 år. Hans speciale er at få alle vores hårprodukter til at stå knivskarpt på millimeteren på vores mange hylder, når han ikke har travlt med at spise kage.</p></div>
-            <div class="medarbejder-div"><p class="medarbejder-navn">Thomas Gorm Neermark</p><img class="medarbejder-img" src="billeder/Thomas.jpg" alt=""><p class="medarbejder-beskrivelse">Thomas er lige startet hos os som frisør praktikant. Vi kender ham som en glad dreng, men vores kunder kender ham, som den praktikant der kom til at klippe et par briller af en kunde. Thomas passer nu både på ører og briller.</p></div>
+            <div class="medarbejder-div">
+              <p class="medarbejder-navn">Peter Lind</p>
+              <img class="medarbejder-img" src="billeder/peter.jpg" alt="" />
+              <p class="medarbejder-beskrivelse">
+                Peter er en yderst erfaren frisør, og har været i salonen i over
+                20 år. Hans speciale er dreadlocks, cornrows, hippiehår og
+                snakke med vores kunder. Men Peter kan klippe alt - Selv katte.
+              </p>
+            </div>
+            <div class="medarbejder-div">
+              <p class="medarbejder-navn">Rasmus Cederdorff</p>
+              <img class="medarbejder-img" src="billeder/rasmus.jpg" alt="" />
+              <p class="medarbejder-beskrivelse">
+                Rasmus er super arrangeret og tager alt den tid der skal til
+                for, at dit hår bliver helt perfekt på millimeteren. Særligt de
+                gamle damer er vilde med hans smil og hans evne indenfor
+                pagehår, krøller og gammeldags frisurer.
+              </p>
+            </div>
+            <div class="medarbejder-div">
+              <p class="medarbejder-navn">Oskar Tuska</p>
+              <img class="medarbejder-img" src="billeder/oskar.jpg" alt="" />
+              <p class="medarbejder-beskrivelse">
+                Oskar har levet det meste af hans liv som fuckboy, og den stil
+                har han taget med ind i salonen igennem de sidste 11 år, hvor
+                han er kendt for hans speciale i at lave fuckboyhår, karseklip,
+                og army cut med stil.
+              </p>
+            </div>
+            <div class="medarbejder-div">
+              <p class="medarbejder-navn">Lenka Otap</p>
+              <img class="medarbejder-img" src="billeder/lenka.jpg" alt="" />
+              <p class="medarbejder-beskrivelse">
+                Lenka er vanvittig god til at lave smørhår, Trumphår,
+                spytslikkerhår. Hun har arbejdet i salonen de sidste 4 år. Både
+                sidste år og i år har hun vundet De Nordiske Mesterskaber i
+                Slikhår. En ægte hårchamp.
+              </p>
+            </div>
+            <div class="medarbejder-div">
+              <p class="medarbejder-navn">Lukas Alexsander Maribom</p>
+              <img class="medarbejder-img" src="billeder/Lukas.jpg" alt="" />
+              <p class="medarbejder-beskrivelse">
+                Lukas er frisørelev og har været i salonen i 2 år og er snart
+                færdigudlært som frisør. Han er bestemt ikke nærig med saksen og
+                han kan trylle enhver pige med langt hår om til at ligne en
+                dreng på rekordtid.
+              </p>
+            </div>
+            <div class="medarbejder-div">
+              <p class="medarbejder-navn">Kenneth Bransholm Schou</p>
+              <img class="medarbejder-img" src="billeder/Kenneth.jpg" alt="" />
+              <p class="medarbejder-beskrivelse">
+                Kenneth er frisørelev og har været her i 1 år. Hans speciale er
+                at få alle vores hårprodukter til at stå knivskarpt på
+                millimeteren på vores mange hylder, når han ikke har travlt med
+                at spise kage.
+              </p>
+            </div>
+            <div class="medarbejder-div">
+              <p class="medarbejder-navn">Thomas Gorm Neermark</p>
+              <img class="medarbejder-img" src="billeder/Thomas.jpg" alt="" />
+              <p class="medarbejder-beskrivelse">
+                Thomas er lige startet hos os som frisør praktikant. Vi kender
+                ham som en glad dreng, men vores kunder kender ham, som den
+                praktikant der kom til at klippe et par briller af en kunde.
+                Thomas passer nu både på ører og briller.
+              </p>
+            </div>
           </div>
         </section>
 

@@ -92,8 +92,7 @@ function setAdmin() {
   //Skjuler forms for admin
   document.querySelector("#forms-tab").classList.add("hidden");
   // Viser admin orders og filter-baren
-  document.querySelector("#orders-overview").classList.remove("hidden");
-  document.querySelector("#filters-bar").classList.remove("hidden");
+  document.querySelector("#admin-view").classList.remove("hidden");
 }
 
 function setCustomer() {
@@ -104,8 +103,8 @@ function setCustomer() {
   //Viser bestilling forms til kunden
   document.querySelector("#forms-tab").classList.remove("hidden");
   // Skjuler order-list og filter-baren for kunden
-  document.querySelector("#orders-overview").classList.add("hidden");
-  document.querySelector("#filters-bar").classList.add("hidden");
+  document.querySelector("#admin-view").classList.add("hidden");
+  4;
 }
 
 //Swaps between the selected hairdressers (Activated by a change)
