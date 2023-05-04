@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   font-size: 14px;
   color: white;
   background-color: rgb(232, 232, 232);
@@ -118,7 +119,7 @@ html, body {
 }
 
 .remove-paddind-top {
-padding-top: 0px;
+  padding-top: 0px;
 }
 
 .hidden {
@@ -132,4 +133,30 @@ padding-top: 0px;
 
 .user {
   background-color: #9c896f;
+}
+
+/* CSS PÅ UPDATE FORMS */
+.dialoge-window {
+  background-color: #9c896f;
+}
+
+#form-update-order {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#form-update-order > h2 {
+  grid-template-columns: 1/3;
+}
+
+/* Oder Elementerne */
+#orders-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#orders-overview > article {
+  background-color: lightslategray;
+  margin: 15px;
+  padding: 10px;
 }
