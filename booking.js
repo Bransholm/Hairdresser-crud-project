@@ -53,6 +53,14 @@ function addEvents() {
     .querySelector("#btn-closeDialog")
     .addEventListener("click", closeBookinsSuccessWindow);
 
+  document
+    .querySelector("#btn-closeDialogUpdate")
+    .addEventListener("click", closeUpdateSuccessWindow);
+
+  document
+    .querySelector("#btn-closeDialogDelete")
+    .addEventListener("click", closeDeleteSuccessWindow);
+
   // document
   //   .querySelector("#filterOrders")
   //   .addEventListener("change", filterSelector);
@@ -351,6 +359,16 @@ async function createOrder(event) {
 function closeBookinsSuccessWindow() {
   document.querySelector("#order-form").reset();
   document.querySelector("#successfull-booking-dialog").close();
+}
+
+function closeUpdateSuccessWindow() {
+  document.querySelector("#order-form").reset();
+  document.querySelector("#successfull-booking-dialog-update").close();
+}
+
+function closeDeleteSuccessWindow() {
+  document.querySelector("#order-form").reset();
+  document.querySelector("#successfull-booking-dialog-delete").close();
 }
 
 //-----------DELETE RELATERET-----------------
