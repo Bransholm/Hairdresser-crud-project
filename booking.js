@@ -49,9 +49,13 @@ function addEvents() {
     .addEventListener("change", sortingFunction);
   setCustomer();
 
+  //Close Dialog Buttons
   document
-    .querySelector("#btn-closeDialog")
+    .querySelector("#btn-closeBookingDialog")
     .addEventListener("click", closeBookinsSuccessWindow);
+
+    
+  document.querySelector("#btn-closeErrorDialog", closeErrorWindow);
 
   // document
   //   .querySelector("#filterOrders")
@@ -345,6 +349,8 @@ async function createOrder(event) {
     console.log("En ny booking er blevet oprettet!");
     document.querySelector("#successfull-booking-dialog").showModal();
     updateData();
+  } else {
+    document.querySelector("#response-error").showModal();
   }
 }
 
@@ -379,6 +385,11 @@ function handleDeletePostButtons() {
 function closeWindow() {
   document.querySelector("#dialog-delete-order").close();
 }
+
+function closeErrorWindow() {
+  document.querySelector("#response-error").close();
+}
+
 //-----------UPDATE RELATERET-----------------
 
 async function updateOrder(
