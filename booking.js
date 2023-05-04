@@ -452,7 +452,7 @@ function updateOrderClicked(event) {
 function filteredSearchInput(event) {
   console.log("input");
   const value = event.target.value;
-  console.log(value);
+  // console.log(value);
   const foundOrders = filterOrders(value);
   orderDOM(foundOrders);
 }
@@ -463,10 +463,14 @@ function filterOrders(searchValue) {
 
   function checkProperty(orders) {
     const criteria = document.querySelector("#filterOrders").value;
-    console.log(criteria);
-    console.log("Check");
+    // console.log(criteria);
+    // console.log("Check");
     if (criteria == "service") {
       const title = orders.behandling.toLowerCase();
+      return title.includes(searchVal);
+    } else if (criteria == "customerName") {
+      const title = orders.navn.trim().toLowerCase();
+      console.log(title);
       return title.includes(searchVal);
     }
   }
