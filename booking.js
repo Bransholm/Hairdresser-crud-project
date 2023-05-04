@@ -449,29 +449,36 @@ function updateOrderClicked(event) {
 //     x[y].includes(searchValue);
 //   }
 // }
-
 function filteredSearchInput(event) {
+  console.log("input");
   const value = event.target.value;
   console.log(value);
-  const filteredOrders = filteredSearch(value);
-  //Kald funktionen som viser elementer...
-  console.log(filteredOrders);
-  orderDOM(filteredOrders);
+  const foundOrders = filterOrders(value);
+  orderDOM(foundOrders);
 }
 
-function filteredSearch(searchValue) {
-  searchValue = searchValue.toLowerCase();
-  //hvorkommer order/posts fra?
-  const filterCriteria = document.querySelector("#filterOrders").value;
+function filterOrders(searchValue) {
+  console.log("search");
+  const searchVal = searchValue.toLowerCase();
+  const results = orders.filter(checkProperty);
 
-  if (filterCriteria == "service") {
-    const behandling = orders.behandling.toLowerCase();
-    return behandling.includes(searchValue);
-  } else if (filterCriteria == "fullName") {
-    const navn = orders.navn.toLowerCase();
-    return navn.includes(searchValue);
+  function checkProperty(orders) {
+    console.log("Check");
+    const title = orders.behandling.toLowerCase();
+    return title.includes(searchVal);
   }
+  return results;
 }
+
+// if (filterCriteria == "service") {
+//   console.log("service running");
+//   const behandling = orders.behandling.toLowerCase();
+//   console.log(behandling);
+//   return behandling.includes(searchValue);
+// } else if (filterCriteria == "fullName") {
+//   const navn = orders.navn.toLowerCase();
+//   return navn.includes(searchValue);
+// }
 
 //------ SORT FUNKTIONER-------------------
 function sortingFunction(event) {
