@@ -14,6 +14,10 @@ function start() {
   console.log("Booking");
   updateData();
 
+  addEvents();
+}
+
+function addEvents() {
   // Select der ændre form baseret på frisøren
   document
     .querySelector("#hairdresser-selected")
@@ -44,6 +48,10 @@ function start() {
     .querySelector("#sort-selected")
     .addEventListener("change", sortingFunction);
   setCustomer();
+
+  document
+    .querySelector("#btn-closeDialog")
+    .addEventListener("click", closeBookinsSuccessWindow);
 
   // document
   //   .querySelector("#filterOrders")
@@ -293,6 +301,7 @@ function setDOM() {
    <lable>Email</lable>
    <input type="email" id="userEmail" name="userEmail" required>
    
+   
 
    <button type="submit">Accept</button>
    </form>`;
@@ -334,10 +343,16 @@ async function createOrder(event) {
   const data = await response.json();
   if (response.ok) {
     console.log("En ny booking er blevet oprettet!");
+    document.querySelector("#successfull-booking-dialog").showModal();
     updateData();
   }
 
   // Husk at opdatere så vi kan se der sker noget!
+}
+
+function closeBookinsSuccessWindow() {
+  document.querySelector("#order-form").reset();
+  document.querySelector("#successfull-booking-dialog").close();
 }
 
 //-----------DELETE RELATERET-----------------
