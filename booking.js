@@ -336,9 +336,9 @@ async function createOrder(event) {
     console.log("En ny booking er blevet oprettet!");
     updateData();
   }
-
-  // Husk at opdatere så vi kan se der sker noget!
 }
+
+// Husk at opdatere så vi kan se der sker noget!
 
 //-----------DELETE RELATERET-----------------
 
