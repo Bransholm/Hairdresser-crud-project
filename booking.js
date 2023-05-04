@@ -45,9 +45,9 @@ function start() {
     .addEventListener("change", sortingFunction);
   setCustomer();
 
-  document
-    .querySelector("#filterOrders")
-    .addEventListener("change", filterSelector);
+  // document
+  //   .querySelector("#filterOrders")
+  //   .addEventListener("change", filterSelector);
 }
 
 function deleteOrderClicked(event) {
@@ -282,16 +282,16 @@ function setDOM() {
     <legend>Bestilling</legend>
    <div>${htmlDOM}</div>
    <lable for="orderDate">Dato</lable>
-   <input type="date" id="orderDate" name="orderDate">
+   <input type="date" id="orderDate" name="orderDate" required>
    <lable for="orderTime">Tid</lable>
-   <input type="time" id="orderTime" name="orderTime">
+   <input type="time" id="orderTime" name="orderTime" required>
    <legend>Bruger Information</legend>
    <lable for="fullName">Navn</lable>
-   <input type="text" id="fullName" name="fullName">
+   <input type="text" id="fullName" name="fullName" required>
    <lable for="userPhone">Tlf. Nummer</lable>
-   <input type="text" id="userPhone" name="userPhone">
+   <input type="text" id="userPhone" name="userPhone" required>
    <lable>Email</lable>
-   <input type="email" id="userEmail" name="userEmail">
+   <input type="email" id="userEmail" name="userEmail" required>
    
 
    <button type="submit">Accept</button>
