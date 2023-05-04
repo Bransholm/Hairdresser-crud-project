@@ -93,7 +93,7 @@
             <div id="orders-filter">
               <lable for="filterOrders">Filtrer efter</lable>
               <select id="filterOrders" name="filterOrders">
-  <!-- NB: Det ville være cool med en søg på alt - med FOR IN loop -->
+                <!-- NB: Det ville være cool med en søg på alt - med FOR IN loop -->
                 <option value="customerName">Kunder</option>
                 <option value="service">behandlinger</option>
               </select>
@@ -298,6 +298,11 @@
           <button type="submit">Opdater</button>
         </form>
         <form method="dialog"><button>Annuller</button></form>
+      </dialog>
+
+      <dialog id="successfull-booking-dialog">
+        <p>Tak for din booking</p>
+        <button id="btn-closeDialog">OK</button>
       </dialog>
 
       <footer id="footer" class="footer">

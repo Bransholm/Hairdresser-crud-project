@@ -14,6 +14,10 @@ function start() {
   console.log("Booking");
   updateData();
 
+  addEvents();
+}
+
+function addEvents() {
   // Select der ændre form baseret på frisøren
   document
     .querySelector("#hairdresser-selected")
@@ -46,8 +50,12 @@ function start() {
   setCustomer();
 
   document
-    .querySelector("#filterOrders")
-    .addEventListener("change", filterSelector);
+    .querySelector("#btn-closeDialog")
+    .addEventListener("click", closeBookinsSuccessWindow);
+
+  // document
+  //   .querySelector("#filterOrders")
+  //   .addEventListener("change", filterSelector);
 }
 
 function deleteOrderClicked(event) {
@@ -282,16 +290,17 @@ function setDOM() {
     <legend>Bestilling</legend>
    <div>${htmlDOM}</div>
    <lable for="orderDate">Dato</lable>
-   <input type="date" id="orderDate" name="orderDate">
+   <input type="date" id="orderDate" name="orderDate" required>
    <lable for="orderTime">Tid</lable>
-   <input type="time" id="orderTime" name="orderTime">
+   <input type="time" id="orderTime" name="orderTime" required>
    <legend>Bruger Information</legend>
    <lable for="fullName">Navn</lable>
-   <input type="text" id="fullName" name="fullName">
+   <input type="text" id="fullName" name="fullName" required>
    <lable for="userPhone">Tlf. Nummer</lable>
-   <input type="text" id="userPhone" name="userPhone">
+   <input type="text" id="userPhone" name="userPhone" required>
    <lable>Email</lable>
-   <input type="email" id="userEmail" name="userEmail">
+   <input type="email" id="userEmail" name="userEmail" required>
+   
    
 
    <button type="submit">Accept</button>
@@ -334,11 +343,15 @@ async function createOrder(event) {
   const data = await response.json();
   if (response.ok) {
     console.log("En ny booking er blevet oprettet!");
+    document.querySelector("#successfull-booking-dialog").showModal();
     updateData();
   }
 }
 
-// Husk at opdatere så vi kan se der sker noget!
+function closeBookinsSuccessWindow() {
+  document.querySelector("#order-form").reset();
+  document.querySelector("#successfull-booking-dialog").close();
+}
 
 //-----------DELETE RELATERET-----------------
 
