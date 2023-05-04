@@ -62,7 +62,6 @@ function addEvents() {
     .querySelector("#btn-closeDialogDelete")
     .addEventListener("click", closeDeleteSuccessWindow);
 
-    
   document.querySelector("#btn-closeErrorDialog", closeErrorWindow);
 
   // document
@@ -368,12 +367,12 @@ function closeBookinsSuccessWindow() {
 }
 
 function closeUpdateSuccessWindow() {
-  document.querySelector("#order-form").reset();
+  // document.querySelector("#order-form").reset();
   document.querySelector("#successfull-booking-dialog-update").close();
 }
 
 function closeDeleteSuccessWindow() {
-  document.querySelector("#order-form").reset();
+  // document.querySelector("#order-form").reset();
   document.querySelector("#successfull-booking-dialog-delete").close();
 }
 
@@ -385,6 +384,7 @@ async function deleteOrder(id) {
   });
   if (response.ok) {
     console.log("En booking er blevet slettet fra Firebase");
+    document.querySelector("#successfull-booking-dialog-delete").showModal();
     updateData();
   }
 }
@@ -443,6 +443,8 @@ async function updateOrder(
   console.log(response.id);
   if (response.ok) {
     console.log("En ordre er blevet opdateret");
+    document.querySelector("#successfull-booking-dialog-update").showModal();
+
     updateData();
   }
 }
