@@ -63,11 +63,12 @@
         </section>
 
         <section id="booking">
-          <button id="admin-selector">Change to customer</button><br />Bestil
-          tid
+          <button id="admin-selector">Change to customer</button><br />
+
           <!-- her bliver bestilling vists hvis man er user -->
           <div id="forms-tab">
             <!-- selector der styre hvilken sub-selector der skal vises i forms -->
+            <label for="hairdresser-selected">Bestil Tid</label>
             <select id="hairdresser-selected">
               <option value="0" selected>---</option>
               <option value="1">Rastafari hår</option>
@@ -81,6 +82,7 @@
 
           <article id="admin-view">
             <!-- her bliver sort styret -->
+            <lable for="sort-selected">Sorter Efter:</lable>
             <select id="sort-selected" name="sort-selected">
               <option value="hairdresser">Frisør</option>
               <option value="time">Tidspunkt</option>
