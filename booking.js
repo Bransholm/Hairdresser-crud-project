@@ -1,5 +1,5 @@
 "use strict";
-
+//warning
 const endpoint =
   "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
 // Hører til filter appen. Ikke sikker på hvad meningen er med den
