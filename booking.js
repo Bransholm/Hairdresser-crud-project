@@ -458,14 +458,17 @@ function filteredSearchInput(event) {
 }
 
 function filterOrders(searchValue) {
-  console.log("search");
   const searchVal = searchValue.toLowerCase();
   const results = orders.filter(checkProperty);
 
   function checkProperty(orders) {
+    const criteria = document.querySelector("#filterOrders").value;
+    console.log(criteria);
     console.log("Check");
-    const title = orders.behandling.toLowerCase();
-    return title.includes(searchVal);
+    if (criteria == "service") {
+      const title = orders.behandling.toLowerCase();
+      return title.includes(searchVal);
+    }
   }
   return results;
 }
