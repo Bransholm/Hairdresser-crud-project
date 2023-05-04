@@ -21,7 +21,10 @@ function addEvents() {
   // Select der ændre form baseret på frisøren
   document
     .querySelector("#hairdresser-selected")
-    .addEventListener("change", modeSelected);
+    .addEventListener("change", setDOM);
+  // document
+  //   .querySelector("#hairdresser-selected")
+  //   .addEventListener("change", modeSelected);
 
   //Knap som skifter mellem administrator og bruger status
   document
@@ -76,7 +79,7 @@ function deleteOrderClicked(event) {
   console.log(deleteOrder);
 }
 
-let hairdresserSelector = 0;
+// let hairdresserSelector = 0;
 let statusIsAdimin = false;
 
 //create -elements
@@ -127,28 +130,28 @@ function setCustomer() {
 }
 
 //Swaps between the selected hairdressers (Activated by a change)
-function modeSelected() {
-  const selectedMode = this.value;
-  changeOfMode(selectedMode);
-  setDOM();
-}
+// function modeSelected() {
+//   const selectedMode = this.value;
+//   changeOfMode(selectedMode);
+//   setDOM();
+// }
 
 //Changes the global variable hairdresser selector
-function changeOfMode(selected) {
-  document
-    .querySelector("#hairdresser-selected option")
-    .classList.add("remove");
-  if (selected == "1") {
-    hairdresserSelector = 1;
-  } else if (selected == "2") {
-    hairdresserSelector = 2;
-  } else if (selected == "3") {
-    hairdresserSelector = 3;
-  } else if (selected == "4") {
-    hairdresserSelector = 4;
-  }
-  console.log(hairdresserSelector);
-}
+// function changeOfMode(selected) {
+//   document
+//     .querySelector("#hairdresser-selected option")
+//     .classList.add("remove");
+//   if (selected == "ratsafari-hår") {
+//     hairdresserSelector = "ratsafari-hår";
+//   } else if (selected == "momors-klip") {
+//     hairdresserSelector = "momors-klip";
+//   } else if (selected == "cbs-style") {
+//     hairdresserSelector = "cbs-style";
+//   } else if (selected == "papfars-frisør") {
+//     hairdresserSelector = "papfars-frisør";
+//   }
+//   console.log(hairdresserSelector);
+// }
 
 //Fetches the json on loadS
 async function fetchOrders() {
@@ -260,7 +263,8 @@ function visualizeOrderElement(order) {
 function setDOM() {
   let htmlDOM;
   document.querySelector("#forms-div").innerHTML = "";
-  if (hairdresserSelector == 1) {
+  const stylist = document.querySelector("#hairdresser-selected").value;
+  if (stylist == "ratsafari-hår") {
     htmlDOM =
       /*html*/
       `<select id="hairdresser">
@@ -268,7 +272,7 @@ function setDOM() {
      <option value="cornrow"> Cornrows</option>
      <option value="hippie">Hippie hår</option>
      </select>`;
-  } else if (hairdresserSelector == 2) {
+  } else if (stylist == "momors-klip") {
     htmlDOM =
       /*html*/
       `<select id="hairdresser">
@@ -276,7 +280,7 @@ function setDOM() {
      <option value="krøller">Krøller</option>
      <option value="gammel">Gammeldags</option>
      </select>`;
-  } else if (hairdresserSelector == 3) {
+  } else if (stylist == "cbs-style") {
     htmlDOM =
       /*html*/
       `<select id="hairdresser">
@@ -284,7 +288,7 @@ function setDOM() {
      <option value="trump">Trump hår</option>
      <option value="slikhår">Spytslikkeren</option>
      </select>`;
-  } else if (hairdresserSelector == 4) {
+  } else if (stylist == "papfars-frisør") {
     htmlDOM =
       /*html*/
       `<select id="hairdresser">
@@ -332,7 +336,7 @@ async function createOrder(event) {
   const form = event.target;
 
   const orderElement = {
-    frisør: hairdresserSelector,
+    frisør: document.querySelector("#hairdresser-selected").value,
     behandling: form.hairdresser.value,
     dato: form.orderDate.value,
     tid: form.orderTime.value,
