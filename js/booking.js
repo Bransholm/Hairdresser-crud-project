@@ -1,17 +1,22 @@
 "use strict";
-//warning
-const endpoint =
-  "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
-// Hører til filter appen. Ikke sikker på hvad meningen er med den
+
+//==========Global==============//
+
 let orders;
 
-// I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
-// let posts;
+let statusIsAdimin = false;
+
+import {
+  fetchOrders,
+  createOrder,
+  deleteOrder,
+  updateOrder,
+} from "/js/rest.js";
 
 window.addEventListener("load", start);
 
 function start() {
-  console.log("Booking");
+  //console.log("Booking");
   updateData();
 
   addEvents();
@@ -22,9 +27,6 @@ function addEvents() {
   document
     .querySelector("#hairdresser-selected")
     .addEventListener("change", setDOM);
-  // document
-  //   .querySelector("#hairdresser-selected")
-  //   .addEventListener("change", modeSelected);
 
   //Knap som skifter mellem administrator og bruger status
   document
@@ -66,10 +68,6 @@ function addEvents() {
     .addEventListener("click", closeDeleteSuccessWindow);
 
   document.querySelector("#btn-closeErrorDialog", closeErrorWindow);
-
-  // document
-  //   .querySelector("#filterOrders")
-  //   .addEventListener("change", filterSelector);
 }
 
 function deleteOrderClicked(event) {
@@ -80,12 +78,6 @@ function deleteOrderClicked(event) {
 }
 
 // let hairdresserSelector = 0;
-let statusIsAdimin = false;
-
-//create -elements
-//update and delete baseon on id...
-// sort and filter funtions....
-
 async function updateData() {
   const fetchObjects = await fetchOrders();
   orders = restructureData(fetchObjects);
@@ -103,7 +95,7 @@ function changeAdminStatus() {
     statusIsAdimin = true;
     setAdmin();
   }
-  //// updateData();
+  // updateData();
 }
 
 function setAdmin() {
@@ -129,39 +121,6 @@ function setCustomer() {
   4;
 }
 
-//Swaps between the selected hairdressers (Activated by a change)
-// function modeSelected() {
-//   const selectedMode = this.value;
-//   changeOfMode(selectedMode);
-//   setDOM();
-// }
-
-//Changes the global variable hairdresser selector
-// function changeOfMode(selected) {
-//   document
-//     .querySelector("#hairdresser-selected option")
-//     .classList.add("remove");
-//   if (selected == "ratsafari-hår") {
-//     hairdresserSelector = "ratsafari-hår";
-//   } else if (selected == "momors-klip") {
-//     hairdresserSelector = "momors-klip";
-//   } else if (selected == "cbs-style") {
-//     hairdresserSelector = "cbs-style";
-//   } else if (selected == "papfars-frisør") {
-//     hairdresserSelector = "papfars-frisør";
-//   }
-//   console.log(hairdresserSelector);
-// }
-
-//Fetches the json on loadS
-async function fetchOrders() {
-  const promise = await fetch(`${endpoint}/orders.json`);
-  const response = await promise.json();
-
-  console.log(response);
-  return response;
-}
-
 //Her loopes der på json-filen. Hvert object tages ud af hovedobjektet og puttes ind i en liste istedet.
 
 function restructureData(ordersObject) {
@@ -184,9 +143,9 @@ function orderDOM(list) {
   }
 }
 
-//Skaber DOM mapiuplation for hvert oder-element i listen.
+//Skaber DOM mapiuplation for hvert order-element i listen.
 function visualizeOrderElement(order) {
-  console.log("showOrder");
+  //console.log("showOrder");
   //Const med lokationen for orders-overview
   const orderView = document.querySelector("#orders-overview");
 
@@ -259,7 +218,7 @@ function visualizeOrderElement(order) {
 }
 
 // Setter DOM manipulation for bestillings-forms.
-// // Variere efter hvilken frisør der er valgt (haridresserSelector)
+// // Varierer efter hvilken frisør der er valgt (haridresserSelector)
 function setDOM() {
   let htmlDOM;
   document.querySelector("#forms-div").innerHTML = "";
@@ -314,7 +273,7 @@ function setDOM() {
    <lable for="userPhone">Tlf. Nummer</lable>
    <input type="text" id="userPhone" name="userPhone" placeholder="Indtast telefon nr." required>
    <lable>Email</lable>
-   <input type="email" id="userEmail" name="userEmail" placeholder="Indstast em@il" required>
+   <input type="email" id="userEmail" name="userEmail" placeholder="Indtast em@il" required>
    
    
 
@@ -327,42 +286,6 @@ function setDOM() {
     .insertAdjacentHTML("beforeend", formHTML);
 
   document.querySelector("#order-form").addEventListener("submit", createOrder);
-}
-
-//Creates a new order when submit is pressed;
-async function createOrder(event) {
-  // event.preventDefault();
-  console.log("Order submitted");
-  const form = event.target;
-
-  const orderElement = {
-    frisør: document.querySelector("#hairdresser-selected").value,
-    behandling: form.hairdresser.value,
-    dato: form.orderDate.value,
-    tid: form.orderTime.value,
-    navn: form.fullName.value,
-    telefonNummer: form.userPhone.value,
-    email: form.userEmail.value,
-  };
-
-  event.preventDefault();
-  // Vi mangler en CLOSE FORMS
-
-  const url = `${endpoint}/orders.json`;
-  const orderAsJson = await JSON.stringify(orderElement);
-  const response = await fetch(url, {
-    method: "POST",
-    body: orderAsJson,
-  });
-
-  const data = await response.json();
-  if (response.ok) {
-    console.log("En ny booking er blevet oprettet!");
-    document.querySelector("#successfull-booking-dialog").showModal();
-    updateData();
-  } else {
-    document.querySelector("#response-error").showModal();
-  }
 }
 
 function closeBookinsSuccessWindow() {
@@ -382,28 +305,6 @@ function closeDeleteSuccessWindow() {
 
 //-----------DELETE RELATERET-----------------
 
-async function deleteOrder(id) {
-  const response = await fetch(`${endpoint}/orders/${id}.json`, {
-    method: "DELETE",
-  });
-  if (response.ok) {
-    console.log("En booking er blevet slettet fra Firebase");
-    document.querySelector("#successfull-booking-dialog-delete").showModal();
-    updateData();
-  }
-}
-function handleDeletePostButtons() {
-  const cancelButton = document.querySelector(
-    "#dialog-delete-post .btn-cancel"
-  );
-  const yesButton = document.querySelector(
-    '#dialog-delete-post button[type="submit"]'
-  );
-
-  cancelButton.addEventListener("click", closeWindow);
-  //yesButton.addEventListener("click", yesWindow);
-}
-
 function closeWindow() {
   document.querySelector("#dialog-delete-order").close();
 }
@@ -413,45 +314,6 @@ function closeErrorWindow() {
 }
 
 //-----------UPDATE RELATERET-----------------
-
-async function updateOrder(
-  id,
-  frisør,
-  behandling,
-  dato,
-  tid,
-  navn,
-  telefonNummer,
-  email
-) {
-  console.log("yippie alt det der....");
-
-  const orderToUpdate = {
-    frisør,
-    behandling,
-    dato,
-    tid,
-    navn,
-    telefonNummer,
-    email,
-  };
-
-  console.log("Kig her");
-  console.log(orderToUpdate);
-
-  const json = JSON.stringify(orderToUpdate);
-  const response = await fetch(`${endpoint}/orders/${id}.json`, {
-    method: "PUT",
-    body: json,
-  });
-  console.log(response.id);
-  if (response.ok) {
-    console.log("En ordre er blevet opdateret");
-    document.querySelector("#successfull-booking-dialog-update").showModal();
-
-    updateData();
-  }
-}
 
 function updateOrderClicked(event) {
   event.preventDefault();
@@ -484,19 +346,6 @@ function updateOrderClicked(event) {
 
 // -------- FILTERS FUNKTIONEN -------------
 
-// function filterSelector(event) {
-// const filterValue = event.target.value;
-// if (filterValue == ""){
-
-// }
-
-// }
-
-// function searchAmongAll(searchValue) {
-//   for (const order in orders) {
-//     x[y].includes(searchValue);
-//   }
-// }
 function filteredSearchInput(event) {
   console.log("input");
   const value = event.target.value;
@@ -524,16 +373,6 @@ function filterOrders(searchValue) {
   }
   return results;
 }
-
-// if (filterCriteria == "service") {
-//   console.log("service running");
-//   const behandling = orders.behandling.toLowerCase();
-//   console.log(behandling);
-//   return behandling.includes(searchValue);
-// } else if (filterCriteria == "fullName") {
-//   const navn = orders.navn.toLowerCase();
-//   return navn.includes(searchValue);
-// }
 
 //------ SORT FUNKTIONER-------------------
 function sortingFunction(event) {
@@ -565,3 +404,5 @@ function sortByCustomer(a, b) {
   console.log("Sorter navnet");
   return a.navn.localeCompare(b.navn);
 }
+
+export { updateData };
