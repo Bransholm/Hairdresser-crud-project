@@ -5,7 +5,7 @@ const endpoint =
 // Hører til filter appen. Ikke sikker på hvad meningen er med den
 let orders;
 
-import { fetchOrders, deleteOrder } from "./rest.js";
+import { fetchOrders, deleteOrder, updateOrder } from "./rest.js";
 
 // I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
 // let posts;
@@ -416,44 +416,44 @@ function closeErrorWindow() {
 
 //-----------UPDATE RELATERET-----------------
 
-async function updateOrder(
-  id,
-  frisør,
-  behandling,
-  dato,
-  tid,
-  navn,
-  telefonNummer,
-  email
-) {
-  console.log("yippie alt det der....");
+// async function updateOrder(
+//   id,
+//   frisør,
+//   behandling,
+//   dato,
+//   tid,
+//   navn,
+//   telefonNummer,
+//   email
+// ) {
+//   console.log("yippie alt det der....");
 
-  const orderToUpdate = {
-    frisør,
-    behandling,
-    dato,
-    tid,
-    navn,
-    telefonNummer,
-    email,
-  };
+//   const orderToUpdate = {
+//     frisør,
+//     behandling,
+//     dato,
+//     tid,
+//     navn,
+//     telefonNummer,
+//     email,
+//   };
 
-  console.log("Kig her");
-  console.log(orderToUpdate);
+//   console.log("Kig her");
+//   console.log(orderToUpdate);
 
-  const json = JSON.stringify(orderToUpdate);
-  const response = await fetch(`${endpoint}/orders/${id}.json`, {
-    method: "PUT",
-    body: json,
-  });
-  console.log(response.id);
-  if (response.ok) {
-    console.log("En ordre er blevet opdateret");
-    document.querySelector("#successfull-booking-dialog-update").showModal();
+//   const json = JSON.stringify(orderToUpdate);
+//   const response = await fetch(`${endpoint}/orders/${id}.json`, {
+//     method: "PUT",
+//     body: json,
+//   });
+//   console.log(response.id);
+//   if (response.ok) {
+//     console.log("En ordre er blevet opdateret");
+//     document.querySelector("#successfull-booking-dialog-update").showModal();
 
-    updateData();
-  }
-}
+//     updateData();
+//   }
+// }
 
 function updateOrderClicked(event) {
   event.preventDefault();

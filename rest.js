@@ -24,4 +24,46 @@ async function deleteOrder(id) {
   }
 }
 
-export { fetchOrders, deleteOrder };
+async function updateOrder(
+  id,
+  frisør,
+  behandling,
+  dato,
+  tid,
+  navn,
+  telefonNummer,
+  email
+) {
+  console.log("yippie alt det der....");
+
+  const orderToUpdate = {
+    frisør,
+    behandling,
+    dato,
+    tid,
+    navn,
+    telefonNummer,
+    email,
+  };
+
+  console.log("Kig her");
+  console.log(orderToUpdate);
+
+  const json = JSON.stringify(orderToUpdate);
+  const response = await fetch(`${endpoint}/orders/${id}.json`, {
+    method: "PUT",
+    body: json,
+  });
+  console.log(response.id);
+  if (response.ok) {
+    console.log("En ordre er blevet opdateret");
+    document.querySelector("#successfull-booking-dialog-update").showModal();
+
+    updateData();
+  }
+}
+
+
+
+
+export { fetchOrders, deleteOrder, updateOrder };
