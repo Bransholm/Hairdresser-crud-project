@@ -5,7 +5,7 @@ const endpoint =
 // Hører til filter appen. Ikke sikker på hvad meningen er med den
 let orders;
 
-import { fetchOrders } from "./rest.js";
+import { fetchOrders, deleteOrder } from "./rest.js";
 
 // I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
 // let posts;
@@ -384,16 +384,16 @@ function closeDeleteSuccessWindow() {
 
 //-----------DELETE RELATERET-----------------
 
-async function deleteOrder(id) {
-  const response = await fetch(`${endpoint}/orders/${id}.json`, {
-    method: "DELETE",
-  });
-  if (response.ok) {
-    console.log("En booking er blevet slettet fra Firebase");
-    document.querySelector("#successfull-booking-dialog-delete").showModal();
-    updateData();
-  }
-}
+// async function deleteOrder(id) {
+//   const response = await fetch(`${endpoint}/orders/${id}.json`, {
+//     method: "DELETE",
+//   });
+//   if (response.ok) {
+//     console.log("En booking er blevet slettet fra Firebase");
+//     document.querySelector("#successfull-booking-dialog-delete").showModal();
+//     updateData();
+//   }
+// }
 function handleDeletePostButtons() {
   const cancelButton = document.querySelector(
     "#dialog-delete-post .btn-cancel"
@@ -567,3 +567,5 @@ function sortByCustomer(a, b) {
   console.log("Sorter navnet");
   return a.navn.localeCompare(b.navn);
 }
+
+export { updateData };
