@@ -5,6 +5,8 @@ const endpoint =
 // Hører til filter appen. Ikke sikker på hvad meningen er med den
 let orders;
 
+import { fetchOrders } from "./rest.js";
+
 // I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
 // let posts;
 
@@ -154,13 +156,13 @@ function setCustomer() {
 // }
 
 //Fetches the json on loadS
-async function fetchOrders() {
-  const promise = await fetch(`${endpoint}/orders.json`);
-  const response = await promise.json();
+// async function fetchOrders() {
+//   const promise = await fetch(`${endpoint}/orders.json`);
+//   const response = await promise.json();
 
-  console.log(response);
-  return response;
-}
+//   console.log(response);
+//   return response;
+// }
 
 //Her loopes der på json-filen. Hvert object tages ud af hovedobjektet og puttes ind i en liste istedet.
 
@@ -184,7 +186,7 @@ function orderDOM(list) {
   }
 }
 
-//Skaber DOM mapiuplation for hvert oder-element i listen.
+//Skaber DOM mapiuplation for hvert order-element i listen.
 function visualizeOrderElement(order) {
   console.log("showOrder");
   //Const med lokationen for orders-overview
@@ -259,7 +261,7 @@ function visualizeOrderElement(order) {
 }
 
 // Setter DOM manipulation for bestillings-forms.
-// // Variere efter hvilken frisør der er valgt (haridresserSelector)
+// // Varierer efter hvilken frisør der er valgt (haridresserSelector)
 function setDOM() {
   let htmlDOM;
   document.querySelector("#forms-div").innerHTML = "";
