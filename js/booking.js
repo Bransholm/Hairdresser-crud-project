@@ -159,8 +159,8 @@ function visualizeOrderElement(order) {
         <p>Kundes nummer: ${order.telefonNummer}</p>
         <p>Kundes email: ${order.email}</p>
       <div class ="btns">
-        <button class="btn-delete">Slet booking</button>
-        <button class="btn-update">Updater booking</button>
+        <button class="btn-delete other-btn">Slet</button>
+        <button class="btn-update other-btn">Opdater</button>
       </div>
       </article>
 `;
@@ -261,7 +261,7 @@ function setDOM() {
     /*html*/
 
     `<form id="order-form">
-    <legend>Bestilling</legend>
+    <legend>Vælg style</legend>
    <div>${htmlDOM}</div>
    <lable for="orderDate">Dato</lable>
    <input type="date" id="orderDate" name="orderDate" required>
@@ -269,15 +269,15 @@ function setDOM() {
    <input type="time" id="orderTime" name="orderTime" required>
    <legend>Bruger Information</legend>
    <lable for="fullName">Navn</lable>
-   <input type="text" id="fullName" name="fullName" placeholder="Indtast dit navn" required>
-   <lable for="userPhone">Tlf. Nummer</lable>
-   <input type="text" id="userPhone" name="userPhone" placeholder="Indtast telefon nr." required>
+   <input type="text" id="fullName" name="fullName" placeholder="Indtast dit navn" required><br />
+   <lable for="userPhone">Tlf. nr.</lable>
+   <input type="text" id="userPhone" name="userPhone" placeholder="Indtast telefon nr." required><br />
    <lable>Email</lable>
-   <input type="email" id="userEmail" name="userEmail" placeholder="Indtast em@il" required>
+   <input type="email" id="userEmail" name="userEmail" placeholder="Indtast em@il" required><br /><br />
    
    
 
-   <button type="submit">Accept</button>
+   <button type="submit" class="other-btn">Book valgte tid</button>
    </form>`;
 
   //Insætter en frisør specifik form i HTML'en

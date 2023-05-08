@@ -63,14 +63,15 @@
         </section>
 
         <section id="booking">
-          <button id="admin-selector">Change to customer</button><br />
+          <button id="admin-selector" class="other-btn">Change to customer</button><br />
 
           <!-- her bliver bestilling vists hvis man er user -->
           <div id="forms-tab">
+            <h1>Start booking af frisørtid:</h1>
             <!-- selector der styre hvilken sub-selector der skal vises i forms -->
             <label for="hairdresser-selected">Bestil Tid</label>
             <select id="hairdresser-selected">
-              <option value="0" selected>---</option>
+              <option value="0" selected>Vælg frisør</option>
               <option value="ratsafari-hår">Rastafari hår</option>
               <option value="momors-klip">Momor Klip</option>
               <option value="cbs-style">CBS style</option>
@@ -82,7 +83,7 @@
 
           <article id="admin-view">
             <!-- her bliver sort styret -->
-            <h1>Bookinger</h1>
+            <h1>Bookinger:</h1>
             <lable for="sort-selected">Sorter Efter:</lable>
             <select id="sort-selected" name="sort-selected">
               <option value="hairdresser">Frisør</option>
@@ -253,11 +254,11 @@
 
       <!--Dialog delete order, som kommer frem når man trykker på "Slet booking"-->
       <dialog id="dialog-delete-order" class="dialoge-window">
-        <h2>Vil du gerne slette din ordre?</h2>
+        <h2>Vil du gerne slette denne booking?</h2>
         <p id="dialog-delete-order-form">form of order</p>
         <form method="dialog" id="form-delete-order">
-          <button type="button" id="btn-cancel">Nej</button>
-          <button type="submit">Ja</button>
+          <button type="button" id="btn-cancel" class="other-btn">Nej</button>
+          <button type="submit" class="other-btn">Ja</button>
         </form>
       </dialog>
 
@@ -274,7 +275,7 @@
             <option value="papfars-frisør">Papfars frisør</option>
           </select>
 
-          <label for="behandling">Behandling:</label>
+          <label for="behandling">Style:</label>
           <input
             type="text"
             id="update-behandling"
@@ -302,29 +303,34 @@
           <label for="email">Email:</label>
           <input type="email" id="update-email" name="email" required />
 
-          <button type="submit">Opdater</button>
+          <button type="submit" class="other-btn">Opdater</button>
         </form>
-        <form method="dialog"><button>Annuller</button></form>
+        <form method="dialog"><button class="other-btn">Fortryd</button></form>
       </dialog>
 
       <dialog id="successfull-booking-dialog" class="dialoge-window">
-        <p>Tak for din booking</p>
-        <button id="btn-closeBookingDialog">OK</button>
+        <h2>Tak for din booking</h2>
+        <p>
+          Vi sender en bekræftigelse til din e-mail.<br />
+          Du modtager en sms-reminder 24 timer før din aftale.<br /><br />
+          Vi glæder os til at se dig
+        </p>
+        <button id="btn-closeBookingDialog" class="other-btn">Luk vindue</button>
       </dialog>
 
       <dialog id="#response-error" class="dialoge-window">
         <p>Noget gik galt! Din handling er ikke gennemført.</p>
-        <button id="btn-closeErrorDialog">OK</button>
+        <button id="btn-closeErrorDialog" class="other-btn">Luk vindue</button>
       </dialog>
 
       <dialog id="successfull-booking-dialog-update" class="dialoge-window">
-        <p>Din booking er blevet opdateret</p>
-        <button id="btn-closeDialogUpdate">OK</button>
+        <h2>Bookingen er nu opdateret</h2>
+        <button id="btn-closeDialogUpdate" class="other-btn">Luk vindue</button>
       </dialog>
 
       <dialog id="successfull-booking-dialog-delete" class="dialoge-window">
-        <p>Bookingen er blevet slettet</p>
-        <button id="btn-closeDialogDelete">OK</button>
+        <h2>Bookingen er nu slettet</h2>
+        <button id="btn-closeDialogDelete" class="other-btn">Luk vindue</button>
       </dialog>
 
       <footer id="footer" class="footer">
