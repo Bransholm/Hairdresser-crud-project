@@ -3,7 +3,7 @@
 const endpoint =
   "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
 
-import { updateData } from "./booking.js";
+import { updateData } from "/js/booking.js";
 
 async function fetchOrders() {
   const promise = await fetch(`${endpoint}/orders.json`);
@@ -30,7 +30,6 @@ async function createOrder(event) {
   };
 
   event.preventDefault();
-  // Vi mangler en CLOSE FORMS
 
   const url = `${endpoint}/orders.json`;
   const orderAsJson = await JSON.stringify(orderElement);
