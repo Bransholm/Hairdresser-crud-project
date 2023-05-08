@@ -551,7 +551,7 @@ function sortingFunction(event) {
 
 function sortByHairdresser(a, b) {
   console.log("Sorter frisøren");
-  return a.frisør - b.frisør;
+  return a.frisør.localeCompare(b.frisør);
 }
 
 function sortByDate(a, b) {
