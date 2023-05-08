@@ -5,7 +5,7 @@ const endpoint =
 // Hører til filter appen. Ikke sikker på hvad meningen er med den
 let orders;
 
-import { fetchOrders, deleteOrder, updateOrder } from "./rest.js";
+import { fetchOrders, createOrder, deleteOrder, updateOrder } from "./rest.js";
 
 // I vores CRUD APP er der en global function som hedder "let posts;". Jeg er usikker på om vi også skal have en lignende global variabel
 // let posts;
@@ -331,41 +331,41 @@ function setDOM() {
   document.querySelector("#order-form").addEventListener("submit", createOrder);
 }
 
-//Creates a new order when submit is pressed;
-async function createOrder(event) {
-  // event.preventDefault();
-  console.log("Order submitted");
-  const form = event.target;
+// //Creates a new order when submit is pressed;
+// async function createOrder(event) {
+//   // event.preventDefault();
+//   console.log("Order submitted");
+//   const form = event.target;
 
-  const orderElement = {
-    frisør: document.querySelector("#hairdresser-selected").value,
-    behandling: form.hairdresser.value,
-    dato: form.orderDate.value,
-    tid: form.orderTime.value,
-    navn: form.fullName.value,
-    telefonNummer: form.userPhone.value,
-    email: form.userEmail.value,
-  };
+//   const orderElement = {
+//     frisør: document.querySelector("#hairdresser-selected").value,
+//     behandling: form.hairdresser.value,
+//     dato: form.orderDate.value,
+//     tid: form.orderTime.value,
+//     navn: form.fullName.value,
+//     telefonNummer: form.userPhone.value,
+//     email: form.userEmail.value,
+//   };
 
-  event.preventDefault();
-  // Vi mangler en CLOSE FORMS
+//   event.preventDefault();
+//   // Vi mangler en CLOSE FORMS
 
-  const url = `${endpoint}/orders.json`;
-  const orderAsJson = await JSON.stringify(orderElement);
-  const response = await fetch(url, {
-    method: "POST",
-    body: orderAsJson,
-  });
+//   const url = `${endpoint}/orders.json`;
+//   const orderAsJson = await JSON.stringify(orderElement);
+//   const response = await fetch(url, {
+//     method: "POST",
+//     body: orderAsJson,
+//   });
 
-  const data = await response.json();
-  if (response.ok) {
-    console.log("En ny booking er blevet oprettet!");
-    document.querySelector("#successfull-booking-dialog").showModal();
-    updateData();
-  } else {
-    document.querySelector("#response-error").showModal();
-  }
-}
+//   const data = await response.json();
+//   if (response.ok) {
+//     console.log("En ny booking er blevet oprettet!");
+//     document.querySelector("#successfull-booking-dialog").showModal();
+//     updateData();
+//   } else {
+//     document.querySelector("#response-error").showModal();
+//   }
+// }
 
 function closeBookinsSuccessWindow() {
   document.querySelector("#order-form").reset();
