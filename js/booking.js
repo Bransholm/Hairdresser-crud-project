@@ -260,13 +260,17 @@ function setDOM() {
   const formHTML =
     /*html*/
 
-    `<form id="order-form">
+    `<form id="order-form">1
+    <div class="choose_style" >
     <legend>Vælg style</legend>
    <div>${htmlDOM}</div>
    <lable for="orderDate">Dato</lable>
    <input type="date" id="orderDate" name="orderDate" required>
    <lable for="orderTime">Tid</lable>
    <input type="time" id="orderTime" name="orderTime" required>
+</div>
+
+<div class="insert_info">
    <legend>Bruger Information</legend>
    <lable for="fullName">Navn</lable>
    <input type="text" id="fullName" name="fullName" placeholder="Indtast dit navn" required><br />
@@ -274,7 +278,7 @@ function setDOM() {
    <input type="text" id="userPhone" name="userPhone" placeholder="Indtast telefon nr." required><br />
    <lable>Email</lable>
    <input type="email" id="userEmail" name="userEmail" placeholder="Indtast em@il" required><br /><br />
-   
+  </div> 
    
 
    <button type="submit" class="other-btn">Book valgte tid</button>
