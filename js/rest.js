@@ -2,7 +2,7 @@
 const endpoint =
   "https://hairdresser-crud-project-default-rtdb.europe-west1.firebasedatabase.app/";
 
-import { updateData } from "./booking";
+import { updateData } from "./booking.js";
 
 async function fetchOrders() {
   const promise = await fetch(`${endpoint}/orders.json`);
