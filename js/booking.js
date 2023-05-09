@@ -1,17 +1,10 @@
-"use strict";
-
 //==========Global==============//
 
 let orders;
 
 let statusIsAdimin = false;
 
-import {
-  fetchOrders,
-  createOrder,
-  deleteOrder,
-  updateOrder,
-} from "/js/rest.js";
+import { fetchOrders, createOrder, deleteOrder, updateOrder } from "./rest.js";
 
 window.addEventListener("load", start);
 
