@@ -187,3 +187,7 @@ body {
   margin: 10px;
 }
 
+.btns button {
+  display: inline-block;
+  margin-right: 10px;
+}
